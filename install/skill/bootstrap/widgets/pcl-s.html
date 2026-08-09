@@ -1,0 +1,107 @@
+<div style="padding:0.5rem 0">
+  <h2 class="sr-only">PCL-S weekly symptom check-in: 17 items, each rated from Not at all to Extremely for how much it bothered you in the past week.</h2>
+
+  <div style="font-size:15px; line-height:1.6; color:var(--text-primary); margin-bottom:14px">In the past week, how much were you bothered by each problem?</div>
+
+  <div id="pcl-rows" style="display:flex; flex-direction:column; gap:10px"></div>
+
+  <div style="display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; flex-wrap:wrap">
+    <div id="pcl-count" style="font-size:13px; color:var(--text-secondary)">0 / 17 answered</div>
+    <button id="pcl-submit" type="button" disabled
+      style="font:500 14px var(--font-sans); color:var(--text-muted); background:var(--surface-1); border:1px solid var(--border); border-radius:999px; padding:9px 20px; cursor:not-allowed">Submit check-in</button>
+  </div>
+
+  <script>
+    (function(){
+      var items = [
+        "Repeated, disturbing memories, thoughts, or images of the stressful experience",
+        "Repeated, disturbing dreams of the stressful experience",
+        "Suddenly acting or feeling as if the stressful experience were happening again (reliving it)",
+        "Feeling very upset when something reminded you of the stressful experience",
+        "Having physical reactions (heart pounding, trouble breathing, sweating) when something reminded you of it",
+        "Avoiding thinking or talking about the stressful experience, or avoiding feelings related to it",
+        "Avoiding activities or situations because they reminded you of the stressful experience",
+        "Trouble remembering important parts of the stressful experience",
+        "Loss of interest in activities you used to enjoy",
+        "Feeling distant or cut off from other people",
+        "Feeling emotionally numb, or unable to have loving feelings for those close to you",
+        "Feeling as if your future will somehow be cut short",
+        "Trouble falling or staying asleep",
+        "Feeling irritable or having angry outbursts",
+        "Having difficulty concentrating",
+        "Being “super-alert,” watchful, or on guard",
+        "Feeling jumpy or easily startled"
+      ];
+      var labels = ["Not at all","A little bit","Moderately","Quite a bit","Extremely"];
+      var answers = {};
+      var submitted = false;
+      var rows = document.getElementById("pcl-rows");
+      var countEl = document.getElementById("pcl-count");
+      var submit = document.getElementById("pcl-submit");
+
+      items.forEach(function(text, i){
+        var n = i + 1;
+        var row = document.createElement("div");
+        row.style.cssText = "border:1px solid var(--border); border-radius:12px; padding:11px 13px; background:var(--surface-2)";
+        var label = document.createElement("div");
+        label.style.cssText = "font-size:14px; line-height:1.5; color:var(--text-primary); margin-bottom:9px";
+        label.textContent = n + ". " + text;
+        row.appendChild(label);
+
+        var chips = document.createElement("div");
+        chips.style.cssText = "display:flex; gap:6px; flex-wrap:wrap";
+        for (var v = 1; v <= 5; v++){
+          (function(val){
+            var b = document.createElement("button");
+            b.type = "button";
+            b.textContent = labels[val-1];
+            b.setAttribute("aria-label", "Item " + n + ": " + labels[val-1]);
+            b.style.cssText = "flex:0 0 auto; font:400 13.5px var(--font-sans); color:var(--text-primary); background:var(--surface-1); border:1px solid var(--border); border-radius:8px; padding:8px 14px; cursor:pointer";
+            b.onclick = function(){
+              if (submitted) return;
+              answers[n] = val;
+              Array.prototype.forEach.call(chips.children, function(c){
+                c.style.background = "var(--surface-1)";
+                c.style.borderColor = "var(--border)";
+                c.style.color = "var(--text-primary)";
+                c.style.fontWeight = "400";
+              });
+              b.style.background = "var(--bg-accent)";
+              b.style.borderColor = "var(--border-accent)";
+              b.style.color = "var(--text-accent)";
+              b.style.fontWeight = "500";
+              update();
+            };
+            chips.appendChild(b);
+          })(v);
+        }
+        row.appendChild(chips);
+        rows.appendChild(row);
+      });
+
+      function update(){
+        var done = Object.keys(answers).length;
+        countEl.textContent = done + " / 17 answered";
+        if (done === 17){
+          submit.disabled = false;
+          submit.style.cursor = "pointer";
+          submit.style.color = "var(--text-accent)";
+          submit.style.background = "var(--bg-accent)";
+          submit.style.borderColor = "var(--border-accent)";
+        }
+      }
+
+      submit.onclick = function(){
+        if (submitted || Object.keys(answers).length !== 17) return;
+        submitted = true;
+        var arr = [];
+        for (var k = 1; k <= 17; k++){ arr.push(answers[k]); }
+        submit.disabled = true;
+        submit.textContent = "Submitted ✓";
+        submit.style.cursor = "default";
+        countEl.textContent = "Thank you — sending your check-in.";
+        sendPrompt("PCL-S weekly check-in complete. My ratings for items 1–17 (1=Not at all … 5=Extremely): " + arr.join(", ") + ".");
+      };
+    })();
+  </script>
+</div>

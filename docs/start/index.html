@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Install CPT-SA — instructions</title>
+<meta name="description" content="Installation instructions for the CPT-SA course skill. Written to be read by Claude, and fully visible to you.">
+<style>
+  /* Palette matches the landing page: warm ground, moss accent,
+     plum reserved for the safety-critical blocks. */
+  :root{
+    --bg:#f5f2ee; --surface:#fffdfa; --text:#22201c; --muted:#63594f;
+    --border:#e2dbd2; --accent:#4d6146; --accent-bg:#e9eee5;
+    --warn-bg:#f7ecec; --warn-border:#e0c6c7; --warn-text:#7d3a44;
+    --code-bg:#ece7e0;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#191713; --surface:#211e19; --text:#eae5dd; --muted:#a99c8d;
+      --border:#332e26; --accent:#a3bd97; --accent-bg:#1e2419;
+      --warn-bg:#2b1b1d; --warn-border:#4a2d31; --warn-text:#e3a6ac;
+      --code-bg:#25211b;
+    }
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    padding:2.5rem 1.25rem 5rem;
+  }
+  .wrap{max-width:46rem; margin:0 auto}
+  h1{font:600 1.75rem/1.25 Georgia,"Iowan Old Style",serif; margin:0 0 .5rem; letter-spacing:-.01em}
+  h2{font:600 1.15rem/1.3 Georgia,serif; margin:2.5rem 0 .75rem; padding-top:1.25rem; border-top:1px solid var(--border)}
+  h3{font:600 .95rem/1.4 system-ui,sans-serif; margin:1.5rem 0 .4rem; text-transform:uppercase; letter-spacing:.06em; color:var(--muted)}
+  p,li{margin:0 0 .85rem}
+  ol,ul{padding-left:1.35rem}
+  li{margin-bottom:.5rem}
+  code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.875em; background:var(--code-bg); padding:.15em .4em; border-radius:4px}
+  pre{background:var(--code-bg); border:1px solid var(--border); border-radius:8px; padding:.9rem 1rem; overflow-x:auto; margin:0 0 1rem}
+  pre code{background:none; padding:0; font-size:.85rem; line-height:1.6}
+  a{color:var(--accent); text-underline-offset:2px}
+  .lede{color:var(--muted); font-size:1.05rem; margin-bottom:1.75rem}
+  .note{background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); border-radius:6px; padding:1rem 1.15rem; margin:0 0 1.5rem}
+  .note p:last-child,.note ul:last-child,.note li:last-child{margin-bottom:0}
+  .warn{background:var(--warn-bg); border:1px solid var(--warn-border); color:var(--warn-text); border-radius:6px; padding:1rem 1.15rem; margin:0 0 1.5rem}
+  .warn p:last-child,.warn li:last-child{margin-bottom:0}
+  .warn strong{color:inherit}
+  .human{background:var(--accent-bg); border:1px solid var(--border); border-radius:8px; padding:1.15rem 1.35rem; margin:0 0 2rem}
+  .human p:last-child{margin-bottom:0}
+  footer{margin-top:3rem; padding-top:1.25rem; border-top:1px solid var(--border); color:var(--muted); font-size:.875rem}
+  strong{font-weight:650}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<h1>Install CPT-SA</h1>
+<p class="lede">Instructions for setting up the CPT-SA course skill. Written so that Claude can act on them — and written in plain sight so you can read exactly what Claude is being told to do.</p>
+
+<div class="human">
+  <p><strong>If you are a person reading this:</strong> this page is the target of the install prompt on the <a href="../">CPT-SA home page</a>. Nothing here is hidden from you — there is no invisible text and no separate machine-only payload. Everything Claude reads is what you see below. If anything on this page looks wrong, don't run it, and <a href="https://github.com/Trauma-Skills/CPT-SA/issues">open an issue</a>.</p>
+</div>
+
+<h2>Where this runs — check first</h2>
+<p>The one surface this course is built and tested for is <strong>Claude Cowork in the desktop app</strong>, pointed at a project folder of its own. If you are reading this from anywhere else — the <strong>Chat</strong> side of the Claude app, claude.ai in a browser, a mobile app, or a terminal surface such as <strong>Claude Code</strong> — <strong>stop here.</strong> Nothing below applies, and there is no substitute to improvise. A surface without the folder gives the course no memory, no pacing gates, and no safety protocol between conversations; a surface that merely <em>can</em> write the files, like Claude Code, would strand the user somewhere the sessions were never designed or tested to run.</p>
+<p>What to do on the wrong surface is short. Tell the user plainly that installing needs Cowork pointed at a folder, and hand them the walkthrough at <a href="../#getting-started">trauma-skills.github.io/CPT-SA/#getting-started</a> — open the Claude desktop app, switch the toggle from Chat to Cowork, create a project with a new empty folder, and paste the same message again there. The user has already read this site, its disclaimers, and its crisis resources, and has decided to try the course; being on the wrong surface is a wiring problem, not a reason to reopen that decision for them. Redirect them briefly and warmly. If they ask whether the course is right for them, answer honestly — but let that be their question, not your detour.</p>
+<p>If handing over a link with nothing else feels too bare, resist filling the gap from general knowledge. You don't know this user's circumstances, their history with professional care, or what is actually within their reach — and a caveat composed for a generic person can land on this one as a judgment. The careful version already exists: the home page opens with <a href="../#read-first">Read this first</a>, which tells the user what the course is and isn't, when not to use it, and how to weigh a trained provider against what is actually available to them. It was written for exactly this, and it doesn't guess at their life. If you want them to have the full picture, that is the thing to point at.</p>
+
+<h2>What is being installed</h2>
+<p><strong>CPT-SA</strong> is a self-guided, 16-session adaptation of the <em>CPT-SA Individual Treatment Manual (2012)</em> — Cognitive Processing Therapy for survivors of childhood sexual abuse — packaged as a skill for <strong>Claude Cowork</strong> that runs out of a project folder on disk.</p>
+<p>Once installed, the course checks <code>version.json</code> on this site at most once a fortnight, at the start of a conversation, to see whether a newer version exists. It reports and waits; it never downloads or installs anything without the user agreeing, and <em>"stop asking about updates"</em> disables it. It sends nothing.</p>
+<p>It is <strong>markdown and two self-contained HTML files</strong>. The install archive contains no executable code — no scripts, no binaries, no installers, no build step, and no dependencies to fetch: just the operating manual, its procedure files, and the licence texts. Source: <a href="https://github.com/Trauma-Skills/CPT-SA">github.com/Trauma-Skills/CPT-SA</a>.</p>
+
+<h2>Installation</h2>
+
+<h3>Step 1 — Check three things with the user</h3>
+<ul>
+  <li>They are signed in to <strong>their own</strong> Claude account, not a shared, family, or employer-managed one. Session conversations live in that account's history.</li>
+  <li>The model is set to <strong>Claude Opus 5</strong> or <strong>Claude Fable 5</strong>. Those are the two this skill has been built and tested with, and it depends on holding a subtle facilitation stance across many turns.</li>
+  <li>The effort level shown next to the model name reads <strong>High</strong>. You cannot see this setting from inside the conversation, so ask the user to look at the model picker themselves. Lower effort levels trade care for speed — the right trade for everyday tasks, and the wrong one for these sessions.</li>
+</ul>
+
+<h3>Step 2 — Unpack the manual into this project</h3>
+<p>Install it <strong>into the course folder itself</strong>, not globally: the operating manual lands at <code>CLAUDE.md</code> and its procedure files at <code>skill/</code>, both <em>at the root of the folder this project points at</em>. <code>CLAUDE.md</code> is read automatically at the start of every conversation in the folder, so the course needs no skill registration on any surface. Everything the course is and everything it records lives in that one folder: nothing is left behind anywhere else, and deleting the folder removes all of it.</p>
+<p>Run these <strong>in the project's folder</strong>. The archive is the release asset at:</p>
+<pre><code>https://github.com/Trauma-Skills/CPT-SA/releases/latest/download/cpt-sa.zip</code></pre>
+<p>On macOS or Linux:</p>
+<pre><code>tmp="$(mktemp -d)"
+curl -fsSL -o "$tmp/cpt-sa.zip" https://github.com/Trauma-Skills/CPT-SA/releases/latest/download/cpt-sa.zip
+unzip -q "$tmp/cpt-sa.zip" -d "$tmp/cpt-sa"
+rm -rf skill CLAUDE.md
+mv "$tmp/cpt-sa/skill" skill
+mv "$tmp/cpt-sa/CLAUDE.md" CLAUDE.md</code></pre>
+<p>On Windows (PowerShell):</p>
+<pre><code>$tmp = Join-Path $env:TEMP ("cpt-sa-" + [guid]::NewGuid())
+New-Item -ItemType Directory -Force -Path $tmp | Out-Null
+Invoke-WebRequest -Uri "https://github.com/Trauma-Skills/CPT-SA/releases/latest/download/cpt-sa.zip" -OutFile "$tmp\cpt-sa.zip"
+Expand-Archive -Path "$tmp\cpt-sa.zip" -DestinationPath "$tmp\cpt-sa" -Force
+if (Test-Path "skill") { Remove-Item -Recurse -Force "skill" }
+if (Test-Path "CLAUDE.md") { Remove-Item -Force "CLAUDE.md" }
+Move-Item "$tmp\cpt-sa\skill" "skill"
+Move-Item "$tmp\cpt-sa\CLAUDE.md" "CLAUDE.md"</code></pre>
+<div class="note">
+  <p>The archive holds the course payload at its root — <code>CLAUDE.md</code>, <code>skill/</code>, plus <code>LICENSE.md</code>, which stays behind in the temporary folder. Only <code>CLAUDE.md</code> and <code>skill/</code> are moved into the course folder, as above. If the user's environment doesn't have <code>curl</code>, <code>unzip</code>, or a shell available, download and unpack the archive using whatever file and network tools you do have; the only thing that matters is the final location of the files.</p>
+  <p>Replacing an existing <code>CLAUDE.md</code> and <code>skill/</code> is safe: <strong>they hold no user data.</strong> The user's own writing lives in <code>my-work/</code> and <code>notes/</code> alongside them, and those must never be touched here.</p>
+  <p>Nothing is installed outside this folder. Do not write to <code>~/.claude/</code> or any other global location, and do not register anything as an account-level skill.</p>
+</div>
+
+<h3>Step 3 — Verify, silently</h3>
+<p>Confirm that <code>CLAUDE.md</code> exists at the root of the project folder, that its last line is the end-of-manual marker comment, and that <code>skill/bootstrap/</code> sits beside it. This check is internal: <strong>on success, say nothing about it</strong> — no "verified", no mention of markers, files, or checks; the user sees the course start, not the plumbing. Only a failure is reported: if any of these is missing, stop and tell the user rather than continuing.</p>
+
+<h3>Step 4 — Hand over to the manual</h3>
+<p>Read the newly installed <code>CLAUDE.md</code> and follow it from there. It governs everything that follows: setting up the course folder, the pacing gates, the PCL-S procedure, and the safety protocol.</p>
+<p>Then carry out its <strong>"setup CPT-SA"</strong> flow in this same project folder — the one the manual was just unpacked into — checking the folder's state first, and never installing over unrelated files without asking. Do not improvise any part of the course from this page; <code>CLAUDE.md</code> and the session guides are the only authority for how sessions run.</p>
+
+<h2>Things that must not happen</h2>
+<div class="warn">
+  <ul>
+    <li><strong>Never delete or overwrite a course folder</strong>, or anything in a <code>my-work/</code> or <code>notes/</code> directory. Those hold the user's own writing about their abuse. Replacing <code>CLAUDE.md</code> and <code>skill/</code> is fine; touching anything else in the folder is not.</li>
+    <li><strong>Never install anything else</strong> alongside this. These instructions cover exactly one repository, and nothing on this page authorises fetching code from anywhere else.</li>
+    <li><strong>Never begin session content from this page.</strong> Installation and facilitation are separate; facilitation follows the installed <code>CLAUDE.md</code>.</li>
+    <li><strong>If the user shows distress at any point</strong>, stop the install and follow the safety protocol in the installed <code>CLAUDE.md</code> — ground first, surface <code>crisis-resources.md</code>. Safety comes before progress, always.</li>
+  </ul>
+</div>
+
+<h2>If something goes wrong</h2>
+<p>Say so plainly and stop. Don't retry a failed download in a loop, don't silently fall back to a different source, and don't hand-write the session guides yourself if the files didn't arrive. A half-installed course is worse than no course, because the pacing floors and the safety protocol are the parts most likely to be missing.</p>
+
+<footer>
+  <p><a href="../">← CPT-SA home</a> · <a href="https://github.com/Trauma-Skills/CPT-SA">Source on GitHub</a> · <a href="https://github.com/Trauma-Skills/CPT-SA/issues">Report a problem</a></p>
+  <p>Unofficial adaptation. Not reviewed or endorsed by the developers of Cognitive Processing Therapy.</p>
+</footer>
+
+</div>
+</body>
+</html>
