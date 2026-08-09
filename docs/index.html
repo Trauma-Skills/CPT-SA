@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CPT-SA — a self-guided course for survivors of childhood sexual abuse</title>
+<meta name="description" content="A self-paced, sixteen-session adaptation of the CPT-SA Individual Treatment Manual (2012), for Claude Cowork. Faithful to the manual, but unofficial, and the delivery has not been clinically tested.">
+<meta property="og:title" content="CPT-SA — a self-guided course">
+<meta property="og:description" content="Sixteen sessions of Cognitive Processing Therapy for survivors of childhood sexual abuse, kept in a folder on your own computer. Faithful to the published manual, but unofficial — please read the disclaimers.">
+<meta name="color-scheme" content="light dark">
+<style>
+/* ============================================================
+   Tokens.
+
+   The ground is warm — warm paper, warm near-black ink — because
+   the subject calls for human rather than clinical. The accent is
+   a deep moss green: warm-leaning and calm, and sitting opposite
+   coral on the wheel so this is never mistaken for Claude's own
+   clay-on-cream identity.
+
+   Because warmth is now the ground rather than the signal, safety
+   is carried by a HUE shift instead: --care is a deep plum, used
+   only for crisis resources and the honest "no evidence" verdict.
+   Nowhere else.
+   ============================================================ */
+:root{
+  --paper:#f5f2ee;
+  --raised:#fffdfa;
+  --ink:#22201c;
+  --ink-soft:#63594f;
+  --ink-faint:#766a5c;
+  --rule:#e2dbd2;
+  --rule-soft:#ece6dd;
+  --accent:#4d6146;
+  --accent-tint:#e9eee5;
+  --care:#7d3a44;
+  --care-tint:#f7ecec;
+  --care-rule:#e0c6c7;
+  --mono-bg:#ece7e0;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --paper:#191713;
+    --raised:#211e19;
+    --ink:#eae5dd;
+    --ink-soft:#a99c8d;
+    --ink-faint:#8d8071;
+    --rule:#332e26;
+    --rule-soft:#26221c;
+    --accent:#a3bd97;
+    --accent-tint:#1e2419;
+    --care:#e3a6ac;
+    --care-tint:#2b1b1d;
+    --care-rule:#4a2d31;
+    --mono-bg:#25211b;
+  }
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+html{scroll-padding-top:2rem}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font:400 17px/1.72 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+/* --- serif display: ALWAYS weight 400, never bold --- */
+h1,h2,h3,.serif{
+  font-family:ui-serif,"Iowan Old Style",Charter,"Palatino Linotype",Palatino,Georgia,serif;
+  font-weight:400;
+  line-height:1.2;
+  letter-spacing:-.008em;
+  text-wrap:balance;
+  margin:0;
+}
+h1{font-size:clamp(2.6rem,7vw,3.9rem);letter-spacing:-.022em}
+h2{font-size:clamp(1.5rem,3.6vw,1.95rem)}
+h3{font-size:1.2rem;line-height:1.35}
+
+/* --- sans utility label: this is where weight lives --- */
+.label{
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink-faint);margin:0;
+}
+
+p,li{margin:0}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:.18em}
+a:hover{text-decoration-thickness:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+strong{font-weight:600}
+em{font-style:italic}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84em;
+  background:var(--mono-bg);padding:.14em .38em;border-radius:3px;overflow-wrap:anywhere}
+hr{border:0;border-top:1px solid var(--rule);margin:0}
+
+.skip{position:absolute;left:-9999px}
+.skip:focus{left:1rem;top:1rem;z-index:99;background:var(--raised);padding:.6rem 1rem;border:1px solid var(--accent)}
+
+/* ============================================================
+   Frontispiece — it's adapted from a printed clinical manual,
+   so it opens like a title page rather than a product hero.
+   ============================================================ */
+.shell{max-width:40rem;margin:0 auto;padding:0 1.4rem}
+
+.front{padding:4.5rem 0 3rem}
+.front .label{margin-bottom:2.4rem}
+.front .rule-top{border-top:1px solid var(--ink);width:2.5rem;margin-bottom:1.6rem}
+.front h1{margin-bottom:.7rem}
+.front .subtitle{
+  font-family:ui-serif,"Iowan Old Style",Charter,"Palatino Linotype",Palatino,Georgia,serif;
+  font-weight:400;font-style:italic;font-size:clamp(1.1rem,2.6vw,1.3rem);
+  line-height:1.45;color:var(--ink-soft);margin-bottom:2rem;max-width:30rem;
+}
+.front .lede{font-size:1.06rem;line-height:1.7;color:var(--ink-soft);max-width:34rem}
+.front .lede strong{color:var(--ink);font-weight:600}
+
+/* --- flow: vertical rhythm via gap, not stacked margins --- */
+.flow{display:flex;flex-direction:column;gap:1.15rem}
+.flow--tight{gap:.7rem}
+.flow--loose{gap:1.7rem}
+
+/* ============================================================
+   The only two boxed elements on the page: safety, and action.
+   ============================================================ */
+.crisis{
+  background:var(--care-tint);border:1px solid var(--care-rule);
+  border-radius:3px;padding:1.25rem 1.4rem;color:var(--care);
+  font-size:.95rem;line-height:1.65;
+}
+.crisis .label{color:var(--care);margin-bottom:.55rem}
+.crisis a{color:inherit;font-weight:600}
+.crisis .quiet{color:inherit;opacity:.82}
+
+.install{
+  background:var(--raised);border:1px solid var(--rule);
+  border-top:2px solid var(--accent);border-radius:3px;padding:1.5rem 1.4rem;
+}
+.install .label{color:var(--accent);margin-bottom:.6rem}
+.install .say{font-size:.95rem;color:var(--ink-soft);line-height:1.6}
+.promptrow{display:flex;gap:.55rem;align-items:stretch;flex-wrap:wrap;margin:.95rem 0}
+.prompt{
+  flex:1 1 17rem;min-width:0;display:flex;align-items:center;
+  background:var(--mono-bg);border:1px solid var(--rule);border-radius:3px;
+  padding:.8rem .95rem;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.86rem;line-height:1.5;color:var(--ink);
+  white-space:pre-wrap;overflow-wrap:anywhere;
+}
+.copy{
+  /* min-width holds the widest label it can ever show, so confirming the copy
+     doesn't make the button jump under the cursor that just clicked it */
+  flex:0 0 auto;min-width:7.75rem;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent);color:var(--paper);border:1px solid var(--accent);
+  border-radius:10px;padding:.8rem 1.1rem;cursor:pointer;
+  font:600 .86rem/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;
+  letter-spacing:.02em;
+}
+.copy:hover{opacity:.9}
+.install .after{font-size:.9rem;color:var(--ink-soft);line-height:1.6}
+/* The long way round. Given as a second button rather than a sentence, because
+   "paste this" and "show me where to paste it" are equally likely first moves,
+   and the second shouldn't be the one you have to go hunting for. */
+.install .more{margin-top:1.1rem;padding-top:1.05rem;border-top:1px solid var(--rule-soft)}
+.install .more a{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;
+  padding:.85rem 1.1rem;border:1px solid var(--accent);border-radius:10px;
+  background:var(--accent);color:var(--paper);
+  text-decoration:none;font-size:.92rem;font-weight:600;line-height:1.4;
+}
+.install .more a::after{content:"\2192";font-weight:400;font-size:1.05rem}
+.install .more a:hover{opacity:.9}
+.install .more .sub{display:block;font-weight:400;font-size:.86rem;margin-top:.15rem;opacity:.82}
+.reqline{font-size:.88rem;color:var(--ink-soft);line-height:1.6}
+
+/* the install message again, inline, wherever a step tells you to paste it —
+   so nobody has to scroll back up and hunt for the box at the top */
+.snip{
+  display:inline-flex;align-items:baseline;gap:.4rem;
+  background:var(--mono-bg);border:1px solid var(--rule);border-radius:6px;
+  padding:.16em .3em .16em .5em;vertical-align:baseline;max-width:100%;
+}
+.snip code{background:none;padding:0;font-size:.8rem;line-height:1.5;overflow-wrap:anywhere}
+.snip-copy{
+  flex:0 0 auto;align-self:center;display:inline-flex;align-items:center;justify-content:center;
+  width:1.55rem;height:1.55rem;padding:0;cursor:pointer;
+  background:none;border:0;border-radius:5px;color:var(--ink-faint);
+}
+.snip-copy:hover{background:var(--accent-tint);color:var(--accent)}
+.snip-copy.done{color:var(--accent)}
+
+/* ============================================================
+   Body: single measure, quiet index rail on wide screens.
+   ============================================================ */
+.body-wrap{max-width:40rem;margin:0 auto;padding:0 1.4rem}
+main{min-width:0}
+section{padding:3.4rem 0;border-top:1px solid var(--rule-soft)}
+.sec-head{display:flex;flex-direction:column;gap:.5rem;margin-bottom:1.5rem}
+
+.index{display:none}
+.index .label{margin-bottom:.85rem}
+.index ol{list-style:none;padding:0;margin:0;display:flex;flex-direction:column}
+.index a{
+  display:flex;gap:.6rem;padding:.3rem 0;color:var(--ink-soft);
+  text-decoration:none;font-size:.85rem;line-height:1.4;
+}
+.index a .n{color:var(--ink-faint);font-variant-numeric:tabular-nums;font-size:.78rem;padding-top:.12em}
+.index a:hover{color:var(--accent)}
+.index a:hover .n{color:var(--accent)}
+/* declared after .index so the display actually wins */
+@media (min-width:1080px){
+  .body-wrap{
+    display:grid;grid-template-columns:11.5rem minmax(0,40rem);
+    gap:4rem;max-width:58rem;
+  }
+  .index{display:block;position:sticky;top:2.5rem;align-self:start;padding-top:3.4rem}
+}
+
+/* ============================================================
+   Definition rows — replaces the card grid. Rules and air.
+   ============================================================ */
+.deflist{display:flex;flex-direction:column}
+.deflist>div{
+  display:grid;gap:.3rem;padding:1.05rem 0;border-top:1px solid var(--rule-soft);
+}
+.deflist>div:first-child{border-top:0;padding-top:0}
+.deflist dt{font-weight:600;font-size:.97rem}
+.deflist dd{margin:0;color:var(--ink-soft);font-size:.95rem;line-height:1.65}
+@media (min-width:38rem){
+  .deflist>div{grid-template-columns:11rem minmax(0,1fr);gap:1.4rem}
+}
+
+/* ============================================================
+   Session arc — one typographic set-piece. Encodes the real
+   phase structure AND which sessions administer the PCL-S.
+   ============================================================ */
+.arc{display:flex;flex-direction:column;gap:1.5rem;margin:.5rem 0 0}
+.phase{display:flex;flex-direction:column;gap:.5rem}
+.nums{display:flex;gap:.3rem;flex-wrap:wrap}
+.nums span{
+  display:flex;align-items:center;justify-content:center;position:relative;
+  width:2rem;height:2rem;border:1px solid var(--rule);border-radius:3px;
+  background:var(--raised);font-size:.82rem;font-variant-numeric:tabular-nums;
+  color:var(--ink-soft);
+}
+.nums span.pcl{border-color:var(--accent);color:var(--accent)}
+.nums span.pcl::after{
+  content:"";position:absolute;bottom:.22rem;width:3px;height:3px;border-radius:50%;background:var(--accent);
+}
+.phase .what{font-size:.93rem;color:var(--ink-soft);line-height:1.6}
+.phase .what b{color:var(--ink);font-weight:600}
+.arc-key{font-size:.85rem;color:var(--ink-faint);display:flex;align-items:center;gap:.45rem}
+.arc-key i{width:.5rem;height:.5rem;border-radius:50%;background:var(--accent);display:inline-block;font-style:normal}
+
+/* ============================================================
+   Evidence verdicts — the eyebrow states strength of evidence,
+   which is real information, not decoration.
+   ============================================================ */
+.verdict{display:flex;flex-direction:column;gap:.65rem;padding:1.4rem 0;border-top:1px solid var(--rule-soft)}
+.verdict:first-of-type{border-top:0}
+.verdict .grade{font-family:system-ui,sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--accent)}
+.verdict.nil .grade{color:var(--care)}
+.verdict.nil{background:var(--care-tint);border:1px solid var(--care-rule);border-radius:3px;padding:1.3rem 1.4rem;margin-top:.6rem}
+.verdict h3{font-size:1.1rem}
+.verdict p,.verdict li{font-size:.96rem;line-height:1.68;color:var(--ink-soft)}
+.verdict strong{color:var(--ink)}
+.verdict.nil strong{color:var(--care)}
+.cite{font-size:.87rem;color:var(--ink-faint);font-style:italic;line-height:1.6}
+
+.note{border-left:2px solid var(--rule);padding-left:1.15rem;color:var(--ink-soft);font-size:.96rem;line-height:1.68}
+.note.care{border-left-color:var(--care-rule);color:var(--care)}
+.note.care strong{color:var(--care)}
+
+ul.plain,ol.plain{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:.6rem}
+ul.plain li,ol.plain li{line-height:1.68}
+ol.steps{margin:0;padding-left:1.4rem;display:flex;flex-direction:column;gap:1rem}
+ol.steps li{line-height:1.68;padding-left:.2rem}
+ol.steps li::marker{color:var(--ink-faint);font-variant-numeric:tabular-nums}
+
+.tablewrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.94rem}
+th,td{text-align:left;padding:.75rem .85rem .75rem 0;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.6}
+th{font-size:.68rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint)}
+td:first-child{font-weight:600;padding-right:1.2rem}
+td.term{white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  font-size:.83rem;font-weight:400;color:var(--accent)}
+
+pre{background:var(--mono-bg);border:1px solid var(--rule);border-radius:3px;
+  padding:1rem 1.1rem;overflow-x:auto;margin:0}
+pre code{background:none;padding:0;font-size:.82rem;line-height:1.7}
+
+/* ============================================================
+   Walkthrough carousel — nine screenshots stacked vertically is
+   a wall; one at a time is a walkthrough. With JS off it stays a
+   horizontally scrollable strip, so no step becomes unreachable.
+   ============================================================ */
+.walk{display:flex;flex-direction:column;gap:.9rem;margin:0}
+
+.walk-bar{display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.walk-count{
+  font-family:system-ui,sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);
+  font-variant-numeric:tabular-nums;
+}
+.walk-nav{display:flex;gap:.6rem;justify-content:center}
+.walk-nav button{
+  width:3rem;height:3rem;padding:0;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--accent);border:1px solid var(--accent);border-radius:12px;
+  color:var(--paper);font-size:1.35rem;line-height:1;
+}
+.walk-nav button:hover:not(:disabled){opacity:.9}
+/* at either end the button is inert, so it drops out of the primary style
+   rather than sitting there looking pressable */
+.walk-nav button:disabled{
+  background:transparent;border-color:var(--rule);color:var(--ink-faint);
+  opacity:.5;cursor:default;
+}
+
+.walk-track{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-auto-flow:column;grid-auto-columns:100%;
+  overflow-x:auto;overscroll-behavior-x:contain;
+  scroll-snap-type:x mandatory;
+  scrollbar-width:none;-ms-overflow-style:none;
+}
+.walk-track::-webkit-scrollbar{display:none}
+@media (prefers-reduced-motion:no-preference){.walk-track{scroll-behavior:smooth}}
+/* start, not stretch: the frame hugs its own screenshot, and the track's
+   height is simply the tallest one — no bordered box full of dead space */
+.walk-track>li{scroll-snap-align:start;min-width:0;align-self:start}
+
+.walk figure{margin:0;display:flex;flex-direction:column;gap:.75rem}
+.walk .frame{
+  display:flex;align-items:center;justify-content:center;
+  padding:.55rem;overflow:hidden;
+  background:var(--raised);border:1px solid var(--rule);border-radius:4px;
+}
+/* Each screen is two identical PNGs in one cell — the plain crop, and the same
+   crop with the control ringed in red. The ring lives in the file rather than
+   in CSS so that Markdown renderers, which have no CSS, still show it. Fading
+   the ringed copy against the plain one is what makes the ring breathe: they
+   differ nowhere else, so nothing but the ring appears to move. */
+.walk .stack{display:grid}
+.walk .stack img{
+  grid-area:1/1;display:block;width:auto;height:auto;border-radius:2px;
+  max-width:100%;max-height:min(420px,58vh);
+}
+.walk .stack .mark{animation:markpulse 2.8s ease-in-out infinite}
+@keyframes markpulse{0%,100%{opacity:.2}50%{opacity:1}}
+/* the pulse is the mechanism, so when motion is unwanted the ring has to hold
+   its loud state rather than settle into the quiet one */
+@media (prefers-reduced-motion:reduce){
+  .walk .stack .mark{animation:none;opacity:1}
+}
+.walk figcaption{font-size:.92rem;line-height:1.6;color:var(--ink-soft);min-height:5rem}
+.walk figcaption b{color:var(--ink);font-weight:600}
+.walk .step-n{
+  display:block;margin-bottom:.3rem;
+  font-family:system-ui,sans-serif;font-size:.68rem;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);
+}
+
+.walk-dots{display:flex;gap:.45rem;justify-content:center}
+.walk-dots button{
+  width:.55rem;height:.55rem;padding:0;cursor:pointer;border-radius:50%;
+  background:transparent;border:1px solid var(--ink-faint);
+}
+.walk-dots button[aria-current="true"]{background:var(--accent);border-color:var(--accent)}
+
+footer{border-top:1px solid var(--rule);padding:2.6rem 0 3.5rem;margin-top:1rem;
+  font-size:.88rem;color:var(--ink-soft);line-height:1.7}
+footer .fine{font-size:.83rem;color:var(--ink-faint)}
+footer .crisis-line{color:var(--care)}
+footer .crisis-line a{color:inherit}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="front">
+  <div class="shell flow flow--loose">
+    <div>
+      <div class="rule-top"></div>
+      <h1>CPT-SA</h1>
+      <p class="subtitle">Cognitive Processing Therapy for survivors of childhood sexual abuse — sixteen sessions, at your own pace, kept in a folder on your own computer.</p>
+      <p class="lede">An AI-guided adaptation of the <strong>CPT-SA Individual Treatment Manual (2012)</strong>, built for <strong>Claude Cowork</strong>. It holds the structure — where you are, what comes next, when the next session opens — so that you don't have to.</p>
+    </div>
+
+    <div class="crisis">
+      <p class="label">If you are in crisis right now, please stop and reach out</p>
+      <p><strong>US:</strong> call or text <strong>988</strong>, or text <strong>HOME</strong> to <strong>741741</strong>. <strong>UK &amp; Ireland:</strong> <strong>116 123</strong> (Samaritans). <strong>Anywhere:</strong> <a href="https://findahelpline.com">findahelpline.com</a>. <strong>US sexual assault:</strong> RAINN <strong>1-800-656-4673</strong>.</p>
+      <p class="quiet" style="margin-top:.5rem">This site is not an emergency service and cannot help you in a crisis.</p>
+    </div>
+
+    <div class="install">
+      <p class="label">Install it</p>
+      <p class="say">Open the Claude desktop app, switch the toggle from <strong>Chat</strong> to <strong>Cowork</strong>, make a Claude project for the course with an empty folder of its own, and paste this into it:</p>
+      <div class="promptrow">
+        <div class="prompt" id="prompt">Start CPT-SA from trauma-skills.github.io/CPT-SA/start</div>
+        <button class="copy" id="copy" type="button">Copy</button>
+      </div>
+      <p class="after">Claude sets everything up and welcomes you in — the course opens with a short conversation about what brings you here. There is nothing for you to download, and nothing to configure. If you'd like to see exactly what that message asks Claude to do, it's written out in full on the <a href="start/">setup page</a>.</p>
+      <p class="more"><a href="#getting-started"><span>Show me how, step by step<span class="sub">Eight screenshots, from opening the app to sending the message</span></span></a></p>
+    </div>
+
+    <p class="reqline">You'll need the <a href="https://claude.ai/download">Claude app</a> for Mac or Windows and a paid Claude plan. <a href="#getting-started">Full details below.</a></p>
+  </div>
+</header>
+
+<div class="body-wrap">
+  <nav class="index" aria-label="On this page">
+    <p class="label">Contents</p>
+    <ol>
+      <li><a href="#read-first"><span class="n">01</span> Read this first</a></li>
+      <li><a href="#getting-started"><span class="n">02</span> Getting started</a></li>
+      <li><a href="#what-it-is"><span class="n">03</span> What it actually is</a></li>
+      <li><a href="#sessions"><span class="n">04</span> The sixteen sessions</a></li>
+      <li><a href="#privacy"><span class="n">05</span> Privacy</a></li>
+      <li><a href="#clinical"><span class="n">06</span> Clinical notes</a></li>
+      <li><a href="#attribution"><span class="n">07</span> Attribution</a></li>
+      <li><a href="#licence"><span class="n">08</span> Licence</a></li>
+    </ol>
+  </nav>
+
+  <main id="main">
+
+  <section id="read-first">
+    <div class="sec-head">
+      <p class="label">01 — Before anything else</p>
+      <h2>Read this first</h2>
+    </div>
+    <div class="flow">
+      <p>This is a <strong>faithful but unofficial adaptation of the CPT-SA Individual Treatment Manual</strong> (Chard, 2012). Faithful is the operative word: the sessions, the sequence, the worksheets and the handouts follow the published clinical manual. They have been adapted for AI-guided use and reformatted to read well on a screen — <strong>not rewritten, not reinterpreted, and not editorialised.</strong> Nobody has added their own theory of your recovery to it. Where it departs from the manual at all, that is <a href="#clinical">listed openly further down</a>.</p>
+      <p>It has <strong>not been reviewed, endorsed, validated, or approved</strong> by Kathleen Chard, Patricia Resick, Candice Monson, or anyone else involved in developing Cognitive Processing Therapy.</p>
+      <p>It's worth being precise about what that does and doesn't mean, in both directions. <strong>The course itself rests on well-tested ground.</strong> CPT is one of the best-evidenced treatments for PTSD that exists; the sexual-abuse version was validated in a randomised controlled trial; and the sessions, worksheets and handouts here follow that manual closely rather than reinventing it. <strong>What has never been tested is this way of delivering it</strong> — the whole course facilitated by an AI instead of a person. Good material, untested delivery. Both halves of that are true at once.</p>
+      <ul class="plain">
+        <li><strong>This is the real work of therapy, without a therapist.</strong> The work is just as demanding done this way, and deserves the same seriousness. Claude can ask, listen, notice what you're avoiding, and follow the protocol carefully. What it cannot do is <strong>hold clinical responsibility</strong> or <strong>intervene if you are in danger</strong>. There is nobody on the other end who can call someone, check on you tomorrow, or be accountable for how this goes.</li>
+        <li><strong>So line up a real person before you start.</strong> A friend, a partner, a family member, a doctor, a helpline you would actually ring. Not to do the course with you, and not to be told any of the detail unless you want them to be — only so that somebody knows you are doing difficult work at the moment and would notice if you went quiet. This is the single most useful thing you can put in place, and it is the one thing the course cannot arrange for you. If there is genuinely nobody, weigh that seriously before you reach sessions 4–8.</li>
+        <li><strong>CPT normally begins with a clinical assessment.</strong> This course does adjust and stop — the safety protocol halts session content on distress, and the minimum waits between sessions hold whether or not you want them to. What's missing is the assessment that decides whether you should be doing this protocol at all, and a trained, supervised, accountable judgement behind every decision to continue.</li>
+        <li><strong>The part that helps most is also the hardest.</strong> Sessions 4–8 involve writing detailed accounts of the abuse and re-reading them daily. This is the stretch that does the work, and it can be a demanding few weeks — sleep, mood and steadiness are often unsettled while you're in the middle of it, and they usually settle again afterwards. None of that is a consequence of doing it this way: it is the same in a therapist's room, and the manual expects it. What is different here is who is watching how you are coping with it. Claude checks, and will stop the session work if you are struggling — but it only sees what you bring to a session, and there is no trained person watching the weeks in between.</li>
+        <li><strong>A trained CPT provider is the better-evidenced option, and worth checking for before you settle for this one.</strong> The directory is at <a href="https://cptforptsd.com/">cptforptsd.com</a>. But <em>better in principle</em> and <em>available to you now</em> are different things. Cost, waiting lists, distance, a bad experience with a clinician before, or simply not being ready to say any of this out loud to another person are all real. This exists for the gap between the two — not as a replacement for a therapist you could actually see.</li>
+      </ul>
+      <div class="note care">
+        <p><strong>Do not use this if</strong> you are in an unsafe living situation, in acute crisis, actively suicidal or self-harming, experiencing psychosis, or in the middle of untreated substance dependence. Those are the conditions under which the protocol is most likely to hurt and least likely to help.</p>
+      </div>
+      <p>Use it with your eyes open, or don't use it.</p>
+    </div>
+  </section>
+
+  <section id="getting-started">
+    <div class="sec-head">
+      <p class="label">02 — Setup</p>
+      <h2>Getting started</h2>
+    </div>
+    <div class="flow flow--loose">
+
+      <div class="flow">
+        <h3>What setup looks like</h3>
+        <p style="font-size:.92rem;color:var(--ink-soft);line-height:1.6;margin:-.35rem 0 0">The whole thing, one screen at a time. The red bubbles mark the controls to use. Everything below writes the same steps out in words.</p>
+        <div class="walk" id="walk" aria-roledescription="carousel" aria-label="Setup walkthrough">
+          <div class="walk-bar">
+            <p class="walk-count" aria-live="polite">Screen 1 of 8</p>
+          </div>
+
+          <ol class="walk-track" id="walk-track" tabindex="0">
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/02-project-or-folder.png" width="1564" height="830" alt="The Claude Cowork composer, with the Chat/Cowork toggle set to Cowork, the model set to Opus 5 at High effort, and the Project or folder selector highlighted."><img class="mark" src="img/focus/02-project-or-folder.png" width="1564" height="830" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Steps one and two</span><b>Turn on Cowork, choose Opus 5 or Fable 5 (if available), then open Project or folder.</b> If an effort level is shown next to the model name, set it to <b>High</b> — the sessions depend on unhurried, careful reasoning. Cowork is what lets Claude work with a folder on your computer rather than just chatting.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/03-create-new-project.png" width="1484" height="756" alt="The Project or folder menu open in Claude, with Create new project highlighted."><img class="mark" src="img/focus/03-create-new-project.png" width="1484" height="756" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step two</span><b>Choose Create new project.</b> The next screen lets you name the project and connect the folder that will hold the course.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/04-create-project.png" width="1580" height="1200" alt="The Create a project dialog with My CPT Course entered, and the Use a folder button highlighted."><img class="mark" src="img/focus/04-create-project.png" width="1580" height="1200" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step two</span><b>Name the project My CPT Course</b>, or another name. Leave the optional goal blank, then choose <strong>Use a folder</strong>.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/05-folder.png" width="1600" height="806" alt="Choosing a new, empty folder named My CPT Course, with the folder name and the New Folder button highlighted."><img class="mark" src="img/focus/05-folder.png" width="1600" height="806" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step two</span><b>Give it an empty folder of its own.</b> Make a new folder and point Cowork at it. Everything the course keeps — your writing, where you are, what comes next — lives here, and nowhere else.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/06-folder-permissions.png" width="1550" height="950" alt="Claude asking for permission to change files in My CPT Course, with Always allow highlighted."><img class="mark" src="img/focus/06-folder-permissions.png" width="1550" height="950" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step three</span><b>Choose Always allow.</b> This gives Claude continuing access to the course folder so it can save your work and progress between conversations.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/07-project-details.png" width="1164" height="1310" alt="The final Create a project dialog, with the local folder path and the Create project button highlighted."><img class="mark" src="img/focus/07-project-details.png" width="1164" height="1310" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step three</span><b>Confirm the details and create the project.</b> Leave Instructions blank, keep visibility set to Local, and check the local folder is the one you just made.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/08-automatic-approve.png" width="1542" height="771" alt="The My CPT Course project screen with the Cowork approvals menu open and Automatically approve highlighted."><img class="mark" src="img/focus/08-automatic-approve.png" width="1542" height="771" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step four</span><b>Inside My CPT Course, use Automatically approve.</b> The course reads and updates its files as you work, so this keeps each session from stopping for confirmation on every action.</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure>
+                <div class="frame"><span class="stack"><img class="plain" src="img/09-paste.png" width="1456" height="882" alt="The CPT-SA install message pasted into the My CPT Course message box, with the message and the send button highlighted."><img class="mark" src="img/focus/09-paste.png" width="1456" height="882" alt="" aria-hidden="true"></span></div>
+                <figcaption><span class="step-n">Step five</span><b>Paste the message and send it.</b> <span class="snip"><code>Start CPT-SA from trauma-skills.github.io/CPT-SA/start</code><button class="snip-copy" type="button" aria-label="Copy the install message"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 5.2V3.9a1.6 1.6 0 0 0-1.6-1.6H4.1A1.6 1.6 0 0 0 2.5 3.9v5.1a1.6 1.6 0 0 0 1.6 1.6h1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></span> That's the whole install. Claude sets everything up and welcomes you in, starting with a short conversation about what brings you here — you don't need to do anything else.</figcaption>
+              </figure>
+            </li>
+          </ol>
+
+          <div class="walk-nav" hidden>
+            <button type="button" data-dir="-1" aria-controls="walk-track" aria-label="Previous screen">&larr;</button>
+            <button type="button" data-dir="1" aria-controls="walk-track" aria-label="Next screen">&rarr;</button>
+          </div>
+
+          <div class="walk-dots" hidden></div>
+        </div>
+      </div>
+
+      <div class="flow">
+        <h3>What you need</h3>
+        <div class="tablewrap">
+          <table>
+            <tbody>
+              <tr><td>App</td><td>The <strong>Claude desktop app</strong> for macOS or Windows — <a href="https://claude.ai/download">download it here</a>. Cowork runs in the desktop app; the web version will not do, and neither will the iPhone or Android apps.</td></tr>
+              <tr><td>Plan</td><td>A <strong>paid Claude plan</strong> — Pro, currently $20/month — at minimum.</td></tr>
+              <tr><td>Model</td><td><strong>Claude Opus 5</strong> or <strong>Claude Fable 5</strong> — the two it has been tested with. Fable needs a <strong>Claude Max</strong> plan, while Opus is available on the Pro plan.</td></tr>
+              <tr><td>Anything else</td><td><strong>Nothing.</strong> There is nothing else to install, download, or set up. If you can open the Claude app, you can run this.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>This is built for Cowork specifically, and won't work properly elsewhere. Cowork is what lets the course read its own notes at the start of every conversation, and what opens the handouts and the weekly check-in alongside the chat instead of burying them in the conversation.</p>
+        <div class="note">
+          <p><strong>Why those two models.</strong> It has to be Claude, because the whole thing is built on Cowork, which is what gives it a folder to keep your work in, notes it can read back at the start of the next conversation, and handouts that open beside the chat. Within that, <strong>Opus 5 and Fable 5 are simply the two it has been built and tested against.</strong></p>
+          <p>That matters more than a preference usually would, because the session guides ask a lot of a facilitator across many turns — staying Socratic, not challenging beliefs before the protocol says to, tracking safety signals, writing continuity notes without being reminded. Another model might hold all of that perfectly well. Nobody has checked.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <h3>Six steps</h3>
+        <ol class="steps">
+          <li><strong>Open the Claude desktop app and start Cowork.</strong> Set the model to Opus 5 or Fable 5.</li>
+          <li><strong>Create a project for the course and give it its own empty folder.</strong> Open <strong>Project or folder</strong>, choose <strong>Create new project</strong>, name it <strong>My CPT Course</strong> or another name, leave the optional goal blank, and choose a new folder in Documents. Sixteen sessions of writing, notes and state accumulate, so keeping them together makes the course easy to find.</li>
+          <li><strong>Finish creating the project.</strong> Choose <strong>Always allow</strong> when Claude asks for folder access, leave Instructions blank, confirm the project is <strong>Local</strong>, then click <strong>Create project</strong>.</li>
+          <li><strong>Set approvals to Automatically approve.</strong> The course needs to read and update its files as you work; this avoids stopping for confirmation on every file action.</li>
+          <li><strong>Paste the install message</strong> and send it: <span class="snip"><code>Start CPT-SA from trauma-skills.github.io/CPT-SA/start</code><button class="snip-copy" type="button" aria-label="Copy the install message"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 5.2V3.9a1.6 1.6 0 0 0-1.6-1.6H4.1A1.6 1.6 0 0 0 2.5 3.9v5.1a1.6 1.6 0 0 0 1.6 1.6h1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></span> Claude does the rest, and welcomes you in with a short conversation about what brings you here.</li>
+          <li><strong>After that, open a new conversation in My CPT Course whenever you want to work.</strong> Just say “Let's start.” It reads the files, works out where you are, and offers exactly one next thing. You never have to track it.</li>
+        </ol>
+        <div class="note care">
+          <p><strong>Two things to check before you paste that message.</strong> It asks Claude to fetch and set up files from the internet, which is worth doing deliberately rather than reflexively. Confirm the address is exactly <code>trauma-skills.github.io/CPT-SA/start</code>, and that you are signed into <a href="#privacy">your own Claude account</a>.</p>
+        </div>
+      </div>
+
+
+      <div class="flow">
+        <h3>What you can say</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th>Say this</th><th>What happens</th></tr></thead>
+            <tbody>
+              <tr><td class="term">setup CPT-SA</td><td>First-time install into the current folder</td></tr>
+              <tr><td class="term">start next session</td><td>Begin the next session, if it's unlocked</td></tr>
+              <tr><td class="term">let's do my homework</td><td>Guided walkthrough of the current homework</td></tr>
+              <tr><td class="term">where am I?</td><td>Orientation — current state and the next step</td></tr>
+              <tr><td class="term">grounding</td><td>A grounding exercise, available at any time</td></tr>
+              <tr><td class="term">check for updates</td><td>Look now for a newer version. Tells you what changed and waits — it never updates on its own</td></tr>
+              <tr><td class="term">reset CPT-SA</td><td>Back to a first-run state. Confirms first, and <strong>archives</strong> your writing rather than deleting it</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flow">
+        <h3>What ends up in your folder</h3>
+        <p>Everything is a plain file you can open, read, print, or delete yourself. Nothing is hidden or locked.</p>
+        <dl class="deflist">
+          <div><dt>Your writing</dt><dd>A folder called <code>my-work</code> holding everything you write — the Impact Statement, your accounts, your worksheets. This is yours. Nothing ever edits or removes it.</dd></div>
+          <div><dt>Where you are</dt><dd>A progress file recording which sessions you've done, what the current homework is, and when the next session opens.</dd></div>
+          <div><dt>The sessions</dt><dd>All sixteen session guides and their handouts, so you can read ahead — or not — entirely as you prefer.</dd></div>
+          <div><dt>Crisis resources</dt><dd>A page of helplines, always there, that the course opens for you whenever things get heavy.</dd></div>
+          <div><dt>Session notes</dt><dd>Short continuity notes written as you go, so a new conversation can pick up where the last one stopped.</dd></div>
+          <div><dt>The course itself</dt><dd>A <code>CLAUDE.md</code> file and a <code>skill</code> folder holding the instructions Claude follows — as readable as everything else. They're installed into this folder rather than anywhere global, so the whole thing is self-contained — and deleting the folder really does remove all of it, with nothing left behind on your computer.</dd></div>
+        </dl>
+        <p>Your course folder is personal. Keep it somewhere private, and don't put it in a shared drive, a synced folder, or anywhere that gets backed up publicly.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="what-it-is">
+    <div class="sec-head">
+      <p class="label">03 — The design</p>
+      <h2>What it actually is</h2>
+    </div>
+    <div class="flow">
+      <p>The insight the whole thing turns on: <strong>the folder is the memory.</strong></p>
+      <p>A sixteen-session protocol will not fit into a single conversation, and two separate conversations with Claude share nothing — the second one has no idea the first ever happened. So everything that matters is written down in the folder instead: where you are, what you've written, how your scores are moving, when the next session opens. Every conversation begins by reading those notes and ends by updating them. That is what lets you work through sixteen sessions across dozens of short, separate conversations without ever having to remember where you left off.</p>
+      <dl class="deflist">
+        <div><dt>Pacing you can't rush</dt><dd>The next session opens once the homework from the last one is done <em>and</em> at least 72 hours have passed — whichever takes longer. The heaviest sessions add a little extra rest, so you're never pointed at account-writing right before bed. The course keeps track of the timing itself, so the structure carries the pacing rather than your willpower.</dd></div>
+        <div><dt>Safety before progress</dt><dd>Distress, dissociation, or any mention of self-harm stops the session content. Claude helps you get steady first and puts the crisis helplines in front of you — only then does it ask whether you want to carry on. A grounding exercise is available whenever you ask.</dd></div>
+        <div><dt>Your writing is yours</dt><dd><code>my-work/</code> and <code>notes/</code> are never edited, rewritten, or deleted. Even a full reset <em>archives</em> them rather than destroying them. Permanent deletion is yours alone to do, and it is easy: the archive is an ordinary folder on your own computer, and dragging it to the bin is the end of it.</dd></div>
+        <div><dt>Resumable mid-session</dt><dd>Live notes are written after every beat, so a dropped conversation picks up where it stopped instead of starting the session over.</dd></div>
+        <div><dt>Nothing to install</dt><dd>There is nothing to download or set up beyond the Claude app itself. Nothing here is a separate app or program — it's all plain text you could open and read yourself.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="sessions">
+    <div class="sec-head">
+      <p class="label">04 — The arc</p>
+      <h2>The sixteen sessions</h2>
+    </div>
+    <div class="flow">
+      <p>The protocol moves through five phases. Each session opens only when the one before it is finished and the minimum wait has passed.</p>
+      <p>Before any of it comes a <b>starting point</b> — a single conversation about you: what brings you here, how it shows up in your life, and what you'd want back, closing with a short baseline check-in. In a therapist's practice a referral and intake would do this; here the course does it itself. It never asks for details of what happened, it can be skipped, and it adds no waiting time — session 1 follows it immediately. It is an addition of this adaptation: the manual's sixteen sessions below begin unchanged at session 1.</p>
+      <div class="arc">
+        <div class="phase">
+          <div class="nums"><span>1</span><span class="pcl">2</span></div>
+          <p class="what"><b>Education and “rules.”</b> How trauma responses work, and the beliefs that get in the way of recovery. Ends by assigning the Impact Statement.</p>
+        </div>
+        <div class="phase">
+          <div class="nums"><span>3</span><span class="pcl">4</span></div>
+          <p class="what"><b>Thoughts and feelings.</b> The link between what you think and what you feel, worked through A-B-C sheets.</p>
+        </div>
+        <div class="phase">
+          <div class="nums"><span>5</span><span class="pcl">6</span><span>7</span><span class="pcl">8</span></div>
+          <p class="what"><b>The accounts.</b> Writing and processing detailed accounts of the abuse, then Challenging Questions and Problematic Thinking Patterns. This is the hardest stretch and the most carefully paced.</p>
+        </div>
+        <div class="phase">
+          <div class="nums"><span>9</span><span class="pcl">10</span><span>11</span><span class="pcl">12</span><span>13</span><span class="pcl">14</span><span>15</span></div>
+          <p class="what"><b>The five belief themes.</b> Safety, Trust, Power and Control, Esteem, and Intimacy — plus Social Support — worked through the Challenging Beliefs Worksheet.</p>
+        </div>
+        <div class="phase">
+          <div class="nums"><span>16</span></div>
+          <p class="what"><b>Closing.</b> A rewritten Impact Statement, read against the first one, and future goals.</p>
+        </div>
+        <p class="arc-key"><i></i> Sessions marked with a dot administer the PCL-S. The manual schedules it on the even sessions; the starting point adds a baseline before session 1.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="privacy">
+    <div class="sec-head">
+      <p class="label">05 — Privacy</p>
+      <h2>Where your writing goes</h2>
+    </div>
+    <div class="flow flow--loose">
+      <p>This is the most sensitive category of personal writing there is. The claims below are deliberately specific rather than reassuring.</p>
+
+      <div class="flow">
+        <h3>What this project does</h3>
+        <ul class="plain">
+          <li><strong>No analytics, no tracking, no crash reporting.</strong> Nothing about you or your use of this is recorded anywhere but your own folder, and nothing is ever sent anywhere.</li>
+          <li><strong>It goes online for exactly one thing.</strong> At most once a fortnight, when you open a conversation and before anything else happens, it looks at this website to see whether a newer version of the course has come out — then tells you, and waits. <strong>It doesn't send anything about you</strong>: not your writing, not your progress, not who you are. It's the same as your own browser opening a page here, so whoever hosts this site sees what any website sees — that a computer somewhere asked for a file. Nothing is downloaded or changed unless you say yes, and you can switch the check off for good by saying <em>stop asking about updates</em>. With it off, the course never goes online at all.</li>
+          <li><strong>No accounts, no servers, no sync, no cloud storage.</strong> Your course folder is a folder on your own disk, and nothing in this project ever uploads it.</li>
+          <li><strong>The welcome card and the check-in form don't reach out to anyone.</strong> Everything they need is inside them — no fonts, pictures or code pulled in from other companies. <em>This web page is the same: it doesn't track you, and it stores nothing on your computer.</em></li>
+          <li><strong>All of it is just writing, and you can read it.</strong> Every part of this course is a document — the sessions, the handouts, the instructions Claude follows. Nothing is a program, nothing is scrambled or hidden, and nothing needs special software to open. If you want to know what a session will ask of you before you start it, you can go and read it.</li>
+          <li><strong>Your writing is never modified or deleted by the course.</strong> Even a reset archives rather than deletes. <strong>You</strong> can delete it permanently whenever you like — the archive is a normal folder on your own computer, and nothing here keeps a second copy anywhere, so deleting it is genuinely the end of it.</li>
+        </ul>
+      </div>
+
+      <div class="note care">
+        <div class="flow flow--tight">
+          <p class="label" style="color:var(--care)">The honest caveat — read this one</p>
+          <p>You are talking to Claude. <strong>What you type during a session is sent to Anthropic</strong> to generate the response, exactly as with any other Claude conversation, handled under Anthropic's privacy policy and whatever data settings apply to your plan. This project cannot change that and does not pretend to. What stays local is your <em>files</em>; what you type in the conversation is not local.</p>
+          <p>So the exposure is exactly one party: <strong>Anthropic, and nobody else.</strong> No third party receives anything — not the maintainers of this project, not an analytics vendor, not a hosting provider, not any other service. There is no middleman, because there is no server between you and Claude.</p>
+          <p>That is inherent to using an AI facilitator, not a flaw in this design — but decide whether it's acceptable to you <strong>before</strong> you start, not after. If it isn't, don't use this.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <h3>Use your own accounts — on Claude, and on the computer</h3>
+        <p>There are two separate doors into this material, and both need to be yours.</p>
+        <ul class="plain">
+          <li><strong>Your Claude account.</strong> Everything runs under whichever account is signed in, and that account's history is where the conversations live. A shared household, family, or work account means someone else can open the app and read every session you have done.</li>
+          <li><strong>Your login on the computer itself.</strong> This matters just as much, and it's easy to miss: your writing is saved as files inside whichever user account you're logged into on that machine. A shared computer login — the family laptop everyone uses, a communal desktop, a shared work profile — means anyone who sits down and logs in can open and read it, no matter whose Claude account created it. Use a login that is yours alone, with a password, and set the screen to lock.</li>
+          <li><strong>Not a work or employer-managed account</strong>, on either. Those can be subject to administrator access, device management, retention policies, and audit.</li>
+          <li><strong>Keep the folder in your own user directory</strong> — not a shared drive, not a synced folder, not anywhere backed up somewhere you wouldn't want it.</li>
+        </ul>
+        <p>If you cannot get sole control of both, this is not safe to use yet — sort that out first. It is worth the delay.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="clinical">
+    <div class="sec-head">
+      <p class="label">06 — Evidence</p>
+      <h2>Clinical notes</h2>
+    </div>
+    <div class="flow flow--loose">
+
+      <div class="flow">
+        <h3>Why this exists</h3>
+        <p>CPT is one of the best-evidenced treatments for PTSD in existence, and most people who could benefit from it never get it — because there is no trained provider nearby, because there's a waiting list, because it's unaffordable, or because the prospect of telling a stranger in a room is itself the barrier. The manual is obtainable. The protocol is highly structured. That structure is what makes it unusually amenable to being held by software: a sequence of defined sessions with defined homework and defined worksheets, not free-form clinical improvisation.</p>
+        <p><strong>There is a second reason, and it isn't about access at all.</strong> Some people arrive here having already tried a therapist and been harmed by one — a confidentiality breach, a boundary crossing, a dependence that was encouraged and then withdrawn, or simply a clinician out of their depth with this material. For that group, “find a therapist” is not straightforwardly good advice, and treating it as though it were is a way of telling someone their experience didn't happen.</p>
+        <p>That is the argument <em>for</em>. It does not make the result equivalent to treatment, and what follows is precise about where the evidence stops.</p>
+      </div>
+
+      <div>
+        <div class="verdict">
+          <p class="grade">Strong · CPT itself</p>
+          <p>CPT is <em>strongly recommended</em> for PTSD by the <a href="https://www.apa.org/ptsd-guideline/treatments/cognitive-processing-therapy">APA Clinical Practice Guideline</a>, the VA/DoD guideline, and <a href="https://istss.org/clinical-resources/trauma-treatment/treatment-materials/cognitive-processing-therapy/">ISTSS</a>, on the basis of a large body of randomised trials.</p>
+        </div>
+
+        <div class="verdict">
+          <p class="grade">Supported · CPT-SA specifically</p>
+          <p>The sexual-abuse adaptation this project is built from was tested in a randomised controlled trial: 71 women with PTSD related to childhood sexual abuse, randomised to CPT-SA or a minimal-attention waitlist, assessed at post-treatment and at 3-month and 1-year follow-up. CPT-SA substantially outperformed the control condition, and gains held at follow-up.</p>
+          <p class="cite">Chard, K. M. (2005), Journal of Consulting and Clinical Psychology, 73(5), 965–971. <a href="https://pubmed.ncbi.nlm.nih.gov/16287396/">PubMed</a></p>
+        </div>
+
+        <div class="verdict">
+          <p class="grade">Well supported · Remote delivery by video</p>
+          <p>Several non-inferiority randomised trials have found CPT delivered over video to be non-inferior to CPT delivered in person:</p>
+          <ul class="plain">
+            <li>126 women with PTSD, veterans and civilians, video-teleconferencing versus in-person; improvement in the video arm was non-inferior and held at 3- and 6-month follow-up. <span class="cite">Morland, Mackintosh, Rosen, Willis, Resick, Chard, &amp; Frueh (2015), Depression and Anxiety, 32(11), 811–820. <a href="https://pubmed.ncbi.nlm.nih.gov/26243685/">PubMed</a></span></li>
+            <li><em>CPT for PTSD delivered to rural veterans via telemental health: a randomised non-inferiority clinical trial</em>, Journal of Clinical Psychiatry (2014). <a href="https://pubmed.ncbi.nlm.nih.gov/24922484/">PubMed</a></li>
+            <li><em>In-office, in-home, and telehealth CPT for PTSD in veterans: a randomised clinical trial</em>, BMC Psychiatry (2022) — remote arms performed at least as well as in-office. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8763446/">PMC</a></li>
+          </ul>
+        </div>
+
+        <div class="verdict">
+          <p class="grade">Supported · Sessions more often than once a week</p>
+          <p>The minimum wait between sessions here is <strong>72 hours</strong>, which is faster than the weekly rhythm most people picture, so it's fair to ask whether that is a compromise. It isn't — and the evidence leans mildly the other way.</p>
+          <p>CPT is written to be delivered <strong>once or twice weekly</strong>, so more often than weekly is inside the protocol rather than a departure from it. In an ongoing non-inferiority trial of a five-day massed CPT format, twice-weekly individual CPT over six weeks is the <em>standard</em> comparison arm — not the experimental one.</p>
+          <p>Across trauma-focused therapy generally, a meta-analysis of 160 randomised trials covering 10,556 patients found <strong>no difference in efficacy</strong> between more-intensive delivery (at least 1.5 sessions a week) and standard delivery — and <strong>significantly lower dropout</strong> from the more intensive schedule.</p>
+          <p class="cite">Hoppen, Kip &amp; Morina (2023), Journal of Anxiety Disorders, 95, 102684. <a href="https://pubmed.ncbi.nlm.nih.gov/36827748/">PubMed</a></p>
+          <p>The same pattern appears in Prolonged Exposure specifically. A meta-analysis of 35 randomised trials (1,508 adults) found dropout of <strong>21.0%</strong> where sessions were prescribed at least twice weekly, against <strong>34.0%</strong> where they were less frequent. And a non-inferiority trial in 134 military personnel and veterans compressed ten PE sessions into two weeks: non-inferior to ten weekly sessions, with dropout of 4.8% against 16.9%.</p>
+          <p class="cite">Levinson, Halverson, Wilson &amp; Fu (2022), Journal of Traumatic Stress, 35(4), 1047–1059 — <a href="https://pubmed.ncbi.nlm.nih.gov/35278229/">PubMed</a>; Dell and colleagues (2022), Psychological Medicine, 53(9), 4192–4199 — <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10317798/">Full text</a></p>
+          <p><strong>72 hours is a minimum, not a schedule.</strong> Nothing pushes you towards it, and there is no streak to keep. Weekly is a perfectly good rhythm and is what the manual assumes; slower than weekly is fine too. The minimum exists to prevent the opposite failure — sixteen sessions crammed into a fortnight because nothing was stopping you — and to take one decision away from you at a moment when you shouldn't have to make it. How you actually space them is yours.</p>
+          <p><strong>And the pace here answers to you rather than to a diary.</strong> In ordinary practice the interval between sessions is settled between two calendars and a clinic's capacity; the once-a-week model is the norm in outpatient practice rather than a finding about which interval works best. That is not a small detail. In a randomised trial of 136 women receiving CPT or PE, <strong>longer average gaps between sessions predicted significantly smaller symptom reduction</strong> — and so did less consistent spacing. Sessions that slip through cancellation, leave and rescheduling are not neutral.</p>
+          <p class="cite">Gutner, Suvak, Sloan &amp; Resick (2016), Journal of Consulting and Clinical Psychology, 84(12), 1108–1115. <a href="https://pubmed.ncbi.nlm.nih.gov/27213491/">PubMed</a></p>
+          <p><strong>What none of it licenses.</strong> It identifies no ideal interval, and nobody has tested 72 hours specifically. Every study above had a clinician setting the pace and a fixed course length — the finding that frequent, regular sessions do better is not the same as showing that a person left to schedule themselves will achieve that.</p>
+        </div>
+
+        <div class="verdict">
+          <p class="grade">Promising, early · Delivery by text, without a live session</p>
+          <p>Remote CPT is not only a video-call story, and the written strand matters more here because it is closer to how this course actually works.</p>
+          <p><strong>CPT-Text</strong> is an adaptation of CPT for <em>asynchronous message-based delivery</em> — no live session at all, the work carried out in writing over time. In an open trial of 28 people, compared with a matched group receiving ordinary messaging therapy on the same platform, CPT-Text produced substantially greater symptom improvement in less time, and its 63% completion rate was comparable to face-to-face and video CPT. A much larger randomised trial (300 participants) is under way.</p>
+          <p class="cite">Wiltsey Stirman and colleagues (2021), “Open Trial of an Adaptation of Cognitive Processing Therapy for Message-Based Delivery,” Technology, Mind, and Behavior, 2(1). <a href="https://tmb.apaopen.org/pub/rhr2svcm">Full text</a></p>
+          <p>Separately, <strong>Written Exposure Therapy</strong> — a brief, entirely written trauma treatment — has been found non-inferior to CPT itself in two randomised trials, with lower dropout. It is a different protocol, not CPT delivered in writing, but it is good evidence that processing trauma <em>on the page</em> is not a compromise.</p>
+          <p class="cite">Sloan, Marx, Lee, &amp; Resick (2018), JAMA Psychiatry — <a href="https://pubmed.ncbi.nlm.nih.gov/29801098/">PubMed</a>; Sloan, Marx, Resick et al. (2022), JAMA Network Open — <a href="https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2787933">Full text</a></p>
+          <p><strong>The caveat that survives all of it.</strong> Every study above — video and text alike — had <em>a trained human therapist</em> doing the work. Together they establish that CPT survives losing the room, losing the face, and even losing the live session. None of them establish what happens when you remove the therapist.</p>
+        </div>
+
+        <div class="verdict">
+          <p class="grade">Weak, and mostly guided · Self-guided and internet-delivered</p>
+          <p>The Cochrane review of internet-based cognitive and behavioural therapies for PTSD found they <em>may</em> produce a clinically important symptom reduction versus waitlist, but rated the certainty of evidence <strong>very low</strong>, on a small number of trials, with no evidence of benefit at short-term follow-up and no trials reporting adverse events.</p>
+          <p class="cite">Lewis, Roberts, Bethell, Robertson, &amp; Bisson (2018), Cochrane Database of Systematic Reviews, 12, CD011710. <a href="https://pubmed.ncbi.nlm.nih.gov/30550643/">PubMed</a></p>
+          <p>Where internet-delivered trauma therapy has performed best — the Spring programme in the UK, non-inferior to face-to-face trauma-focused CBT at 16 weeks, though <em>not</em> sustained at 52 weeks — it was <strong>guided self-help</strong>: the participant worked through material alone, but with scheduled contact from a real therapist throughout. Fully unguided delivery is consistently the weakest arm in this literature, with markedly higher dropout.</p>
+          <p><strong>That distinction is the entire design brief here, and this project is built for the guided side of it.</strong> It is deliberately not a workbook you open by yourself. Something reads your notes at the start of every conversation, works out where you are, holds the pacing, asks after the homework, notices what you are steering around, and stops the session if you are in distress. Those are the functions that separated the guided arms from the unguided ones.</p>
+          <p>The difference — and it is not a small one — is that in every trial in that literature, <strong>the guide was a person</strong>. Whether something that performs the same functions without being a person produces the same benefit is precisely the untested question, and it is the subject of the block below.</p>
+        </div>
+
+        <div class="verdict nil">
+          <p class="grade">No evidence · A facilitator that is a language model</p>
+          <h3>There is no evidence base for CPT facilitated by a large language model. None.</h3>
+          <p>No trial, no pilot, no case series. This project is not an implementation of an evidence-based delivery method; it is an untested extrapolation from one.</p>
+          <p>The known risks of that extrapolation are worth naming:</p>
+          <ul class="plain">
+            <li>Its read on how you're doing is <strong>unvalidated</strong>. It has only what you write, and trauma survivors under-report — a clinician also has tone, pace, hesitation and body language that a text channel never carries.</li>
+            <li>It may miss dissociation, which is common in this population and especially likely during account work. It might well notice; nobody has ever measured how reliably.</li>
+            <li>It may be inappropriately agreeable where a clinician would push back, press on where a clinician would stop, or pause when a clinician would continue.</li>
+            <li>Nobody is checking on you if you go quiet mid-protocol.</li>
+            <li>Nothing here is accountable to anyone — no licence, no supervisor, no regulator, no duty of care.</li>
+          </ul>
+          <p>The safety scaffolding here — the minimum waits between sessions, distress checks, grounding, crisis resources, the rule that safety overrides progress — is a genuine attempt to mitigate that. It is a mitigation, not a solution, and it has not been validated either.</p>
+        </div>
+      </div>
+
+      <div class="flow">
+        <h3>Deliberate deviations from the manual</h3>
+        <dl class="deflist">
+          <div><dt>No diagnosis</dt><dd>The manual assumes a completed clinical assessment and tells the client they have PTSD. This project offers psychoeducation and invites you to notice what resonates instead. It never asserts you have a disorder.</dd></div>
+          <div><dt>A starting point added</dt><dd>The manual assumes a referral and an intake conversation happened before session 1. This adds an optional, intake-style conversation in their place — what brings you here, what it's costing, whether now is the right time — with a baseline PCL-S at its close, restoring the pre-treatment measure the manual takes for granted. It sits <em>before</em> the manual-derived material; the sixteen sessions themselves start unchanged at session 1.</dd></div>
+          <div><dt>Minimum waits added</dt><dd>The manual is therapist-paced, at one or two sessions a week. This adds a hard 72-hour minimum between sessions plus per-session homework cooldowns, because no clinician is watching for someone doing all sixteen sessions in a fortnight. The minimum is deliberately not <em>weekly</em> — see <a href="#clinical">the pacing evidence above</a>.</dd></div>
+          <div><dt>Scores never read back</dt><dd>The manual has a clinician interpret the PCL-S. Here it stays facilitator-facing, because a rising score with nobody to contextualise it is more likely to harm than help.</dd></div>
+          <div><dt>Worksheets are guided</dt><dd>A-B-C sheets, Challenging Questions and the Challenging Beliefs Worksheet are worked through conversationally rather than issued as blank forms, since there's no session to bring a half-finished form back to.</dd></div>
+        </dl>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="attribution">
+    <div class="sec-head">
+      <p class="label">07 — Credit where it belongs</p>
+      <h2>Attribution</h2>
+    </div>
+    <div class="flow">
+      <p>The clinical content — the session structure, the therapeutic sequence, the handouts, the worksheets — is <strong>derived directly from</strong> Dr. Kathleen Chard's <em>CPT-SA Individual Treatment Manual</em> (2012), which the developers of CPT publish on their own site — <a href="https://cptforptsd.com/wp-content/uploads/2017/01/CPT-SA-IND-Tx-Manual-2012.pdf">read it in full (PDF)</a>.</p>
+      <p>CPT-SA is the version of <strong>Cognitive Processing Therapy</strong> written specifically for survivors of childhood sexual abuse. CPT itself is a treatment for PTSD developed by <strong>Patricia A. Resick, Candice M. Monson, and Kathleen M. Chard</strong>; its current comprehensive manual is <a href="https://www.guilford.com/books/Cognitive-Processing-Therapy-for-PTSD/Resick-Monson-Chard/9781462554270"><em>Cognitive Processing Therapy for PTSD: A Comprehensive Manual</em> (2nd ed., Guilford Press)</a>, and its official home — including provider training and the provider directory — is <a href="https://cptforptsd.com/">cptforptsd.com</a>.</p>
+      <p>The handouts in this course are the CPT-SA manual's handouts, reformatted to read well on a screen. They are included because the course is unusable without them, under a good-faith reading of personal and educational use.</p>
+
+      <h3 style="margin-top:.6rem">Further reading</h3>
+      <ul class="plain">
+        <li><a href="https://cptforptsd.com/">CPT official site</a> — training, consultation, provider directory</li>
+        <li><a href="https://www.ptsd.va.gov/professional/continuing_ed/CPT_Manual.asp">VA National Center for PTSD — CPT</a></li>
+        <li><a href="https://www.apa.org/ptsd-guideline/treatments/cognitive-processing-therapy">APA Clinical Practice Guideline — CPT</a></li>
+        <li><a href="https://istss.org/clinical-resources/trauma-treatment/treatment-materials/cognitive-processing-therapy/">ISTSS — CPT treatment materials</a></li>
+        <li><a href="https://www.cebc4cw.org/program/cognitive-processing-therapy-cpt/">CEBC — CPT program profile</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="licence">
+    <div class="sec-head">
+      <p class="label">08 — Reuse</p>
+      <h2>Licence</h2>
+    </div>
+    <div class="flow">
+      <p><strong>Split, deliberately.</strong> See <a href="https://github.com/Trauma-Skills/CPT-SA/blob/main/NOTICE.md">NOTICE.md</a> for the full statement.</p>
+      <dl class="deflist">
+        <div><dt>Free and open source (MIT license)</dt><dd>The scaffolding — the operating manual (<code>install/CLAUDE.md</code>), <code>install/skill/</code> excluding <code>bootstrap/sessions/</code>, and the widget HTML. The folder-as-memory design, the pacing rules, the install and reset semantics. Original work, freely reusable.</dd></div>
+        <div><dt>Not licensed</dt><dd>Everything under <code>install/skill/bootstrap/sessions/</code> — session guides, handouts, worksheets. Derived from Dr. Chard's manual. No rights are granted, because none are held.</dd></div>
+      </dl>
+      <p>If you want to reuse the <em>machinery</em> for a different protocol, the MIT part is what you want, and it is genuinely reusable — the folder-as-memory pattern, the gating, and the archive-never-delete guarantees are all protocol-agnostic.</p>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <div class="shell flow flow--tight">
+    <p><a href="https://github.com/Trauma-Skills/CPT-SA">Source on GitHub</a> · <a href="start/">Setup instructions</a> · <a href="https://github.com/Trauma-Skills/CPT-SA/issues">Report a problem</a></p>
+    <p class="crisis-line"><strong>Crisis resources:</strong> US <strong>988</strong>, or text <strong>HOME</strong> to <strong>741741</strong> · UK &amp; Ireland <strong>116 123</strong> · RAINN <strong>1-800-656-4673</strong> · <a href="https://findahelpline.com">findahelpline.com</a></p>
+    <p class="fine">Unofficial adaptation of the CPT-SA Individual Treatment Manual (Chard, 2012). Not reviewed or endorsed by the developers of Cognitive Processing Therapy. Does not provide medical advice, diagnosis, or treatment, and is not a substitute for care from a qualified professional.</p>
+  </div>
+</footer>
+
+<script>
+// Walkthrough carousel. Everything below is enhancement: the track is a
+// scroll-snapping strip that already works by swipe, arrow key and scrollbar,
+// so with JS off the only loss is the buttons and the dots. A screen whose
+// screenshot hasn't been added yet drops out rather than showing a broken
+// image, and if none survive the whole block removes itself.
+(function(){
+  var root=document.getElementById('walk');
+  if(!root) return;
+  var track=root.querySelector('.walk-track'),
+      dots=root.querySelector('.walk-dots'),
+      count=root.querySelector('.walk-count'),
+      nav=root.querySelector('.walk-nav'),
+      prev=root.querySelector('[data-dir="-1"]'),
+      next=root.querySelector('[data-dir="1"]'),
+      i=0;
+
+  function slides(){ return Array.prototype.slice.call(track.children); }
+
+  function buildDots(){
+    dots.textContent='';
+    slides().forEach(function(li,n){
+      var b=document.createElement('button');
+      b.type='button';
+      b.setAttribute('aria-label','Screen '+(n+1));
+      b.addEventListener('click',function(){ go(n); });
+      dots.appendChild(b);
+    });
+  }
+
+  function paint(){
+    var all=slides();
+    if(!all.length){ root.hidden=true; return; }
+    if(i>all.length-1) i=all.length-1;
+    count.textContent='Screen '+(i+1)+' of '+all.length;
+    Array.prototype.forEach.call(dots.children,function(b,n){
+      b.setAttribute('aria-current',n===i?'true':'false');
+    });
+    prev.disabled=i===0;
+    next.disabled=i===all.length-1;
+  }
+
+  function go(n){
+    var all=slides();
+    if(!all.length) return;
+    i=Math.max(0,Math.min(n,all.length-1));
+    track.scrollTo({left:all[i].offsetLeft-all[0].offsetLeft});
+    paint();
+  }
+
+  // Strictly "did this already fail before the script ran". Any lazy image is
+  // exempt on purpose: Safari reports complete === true with naturalWidth 0
+  // for one it simply hasn't fetched yet, which is indistinguishable from a
+  // broken image and silently eats screens. Those failures arrive by error
+  // event instead, which is reliable everywhere.
+  function alreadyBroken(img){
+    return img.complete && img.naturalWidth===0 && img.getAttribute('loading')!=='lazy';
+  }
+
+  slides().forEach(function(li){
+    var plain=li.querySelector('img.plain'), mark=li.querySelector('img.mark');
+    // The plain crop is the screen. If it's missing, the screen goes.
+    if(plain){
+      var drop=function(){ li.remove(); buildDots(); paint(); };
+      plain.addEventListener('error',drop);
+      if(alreadyBroken(plain)) drop();
+    }
+    // The ringed copy only adds the pulse, so losing it costs a cue, not a
+    // step — take the overlay out rather than the screen.
+    if(mark){
+      var unmark=function(){ mark.remove(); };
+      mark.addEventListener('error',unmark);
+      if(alreadyBroken(mark)) unmark();
+    }
+  });
+
+  nav.hidden=false;
+  dots.hidden=false;
+  buildDots();
+  paint();
+
+  [prev,next].forEach(function(b){
+    b.addEventListener('click',function(){ go(i+Number(b.dataset.dir)); });
+  });
+
+  root.addEventListener('keydown',function(e){
+    if(e.key==='ArrowLeft'){ e.preventDefault(); go(i-1); }
+    else if(e.key==='ArrowRight'){ e.preventDefault(); go(i+1); }
+  });
+
+  // Keep the counter and dots honest when the track is scrolled directly.
+  var settle;
+  track.addEventListener('scroll',function(){
+    clearTimeout(settle);
+    settle=setTimeout(function(){
+      var n=Math.round(track.scrollLeft/(track.clientWidth||1));
+      if(n!==i){ i=n; paint(); }
+    },90);
+  });
+})();
+(function(){
+  // One copy path for the button at the top and the inline icons further down.
+  // The fallback selects the text in place, so on a browser without the
+  // clipboard API the user still ends up with it highlighted and one keystroke
+  // away rather than with nothing.
+  function copy(el, done){
+    // Selecting the text is the floor: if we can't put it on the clipboard,
+    // the user should at least be left looking at it highlighted and one
+    // keystroke away, rather than at a control that did nothing.
+    function selectAndTry(){
+      var r=document.createRange(); r.selectNodeContents(el);
+      var sel=window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      try{ return document.execCommand('copy'); }catch(e){ return false; }
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(el.textContent.trim()).then(
+        function(){ done(true); },
+        function(){ done(selectAndTry()); }   // permission denied, insecure context, no gesture
+      );
+      return;
+    }
+    done(selectAndTry());
+  }
+
+  var btn=document.getElementById('copy'), el=document.getElementById('prompt');
+  if(btn && el){
+    btn.addEventListener('click', function(){
+      copy(el, function(ok){
+        btn.textContent = ok ? '\u2713 Copied' : 'Press \u2318C';
+        setTimeout(function(){ btn.textContent='Copy'; }, 1800);
+      });
+    });
+  }
+
+  var TICK='<svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false">'+
+    '<path d="M3.2 8.6l3.1 3.1 6.5-6.9" fill="none" stroke="currentColor" stroke-width="1.8" '+
+    'stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  Array.prototype.forEach.call(document.querySelectorAll('.snip-copy'), function(b){
+    var code=b.parentNode.querySelector('code');
+    if(!code) return;
+    var glyph=b.innerHTML, label=b.getAttribute('aria-label');
+    b.addEventListener('click', function(){
+      copy(code, function(ok){
+        if(!ok) return;   // copy() has left the text selected; that's the cue
+        b.innerHTML=TICK;
+        b.className='snip-copy done';
+        b.setAttribute('aria-label','Copied');
+        setTimeout(function(){
+          b.innerHTML=glyph;
+          b.className='snip-copy';
+          b.setAttribute('aria-label',label);
+        }, 1800);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+# --- Source manual: copyrighted, never committed ---------------------------
+# Chard (2012), "Do not cite without permission from the author."
+# Build-time material only; see NOTICE.md.
+Manual/
+*.pdf
+out.txt
+
+# --- Live course data: someone's therapy writing, never committed ----------
+# A course folder must live OUTSIDE this repo. These are a root-anchored
+# backstop for the case where someone runs `install` in the skill folder
+# itself. They are deliberately anchored with a leading `/` so they do NOT
+# match the blank-slate seeds in reference/bootstrap/, which must ship.
+/state.json
+/progress.md
+/progress.debug.md
+/pcl-scores.csv
+/pcl-scores.debug.csv
+/notes/
+/my-work/
+/archive/
+/sessions/
+/widgets/
+/crisis-resources.md
+/PCL-S_Scoring_Guide.md
+/tmp/
+# `/CLAUDE.md` is deliberately absent from that list: this repo has its own,
+# tracked (see CLAUDE.md). It is scaffolding-identical to the course one and
+# holds no user data. Course folders still belong outside this repo — if one is
+# ever installed here, the tracked CLAUDE.md will show as modified. Don't commit
+# that; move the course folder out instead.
+
+# --- QA: the procedure ships, the simulated material does not -------------
+# `qa/PROTOCOL.md`, `qa/codex-brief.md` and `qa/run-report-template.md` are
+# tracked — how this is tested belongs in plain sight like everything else.
+# What must never be published is the material a QA run generates or scripts:
+# `qa/persona.md` holds a simulated first-person disclosure and verbatim
+# self-harm strings, and run artefacts hold transcripts of both. Fixtures live
+# outside the repo entirely (~/cpt-qa/), and are destroyed after a run.
+qa/persona.md
+qa/runs/
+
+# --- Screenshot sources: kept locally, never published ---------------------
+# Full-window captures of someone's actual Claude app. `tools/make-shots.py`
+# derives the two committed sets from these: docs/img/*.png (cropped) and
+# docs/img/focus/*.png (cropped, with the focus overlay). Keep the raws around
+# so crops can be redone without recapturing — just not in the public repo.
+docs/img/raw/
+docs/img/.grid/
+
+# --- Shipped scaffold: must be tracked -------------------------------------
+# `install` copies this into every course folder, so it has to be in the repo.
+# Most developers' global gitignore excludes **/.claude/settings.local.json;
+# a repo-level negation takes precedence over the global excludes file.
+!reference/bootstrap/.claude/
+!reference/bootstrap/.claude/settings.local.json
+
+# --- OS / editor / tooling -------------------------------------------------
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+__pycache__/

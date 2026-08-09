@@ -1,0 +1,27 @@
+name: release
+on:
+  push:
+    tags: ["v*"]
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build install archive
+        run: |
+          mkdir -p out/payload
+          cp install/CLAUDE.md out/payload/CLAUDE.md
+          cp -R install/skill out/payload/skill
+          cp LICENSE.md out/payload/
+          cd out/payload && zip -X -q -r ../cpt-sa.zip .
+          unzip -l ../cpt-sa.zip | tail -3
+      - name: Create release with asset
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" out/cpt-sa.zip \
+            --title "CPT-SA $GITHUB_REF_NAME" \
+            --notes "Install archive (\`cpt-sa.zip\`): \`CLAUDE.md\` + \`skill/\` plus \`LICENSE.md\` — exactly what the setup page unpacks. The repository itself is never the install payload." \
+          || gh release upload "$GITHUB_REF_NAME" out/cpt-sa.zip --clobber
