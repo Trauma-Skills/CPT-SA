@@ -54,6 +54,12 @@ docs/img/.grid/
 !reference/bootstrap/.claude/
 !reference/bootstrap/.claude/settings.local.json
 
+# --- Maintainer workflow: local by design ----------------------------------
+# Shared working conventions for this checkout — kept out of the published
+# repo, and out of any single agent's memory, because several accounts and
+# agents work here. See the file's own preamble.
+/WORKFLOW.md
+
 # --- OS / editor / tooling -------------------------------------------------
 .DS_Store
 Thumbs.db
