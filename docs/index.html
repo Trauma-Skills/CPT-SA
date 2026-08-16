@@ -402,7 +402,7 @@ footer .crisis-line a{color:inherit}
 
     <div class="install">
       <p class="label">Install it</p>
-      <p class="say">Open the Claude desktop app, switch the toggle from <strong>Chat</strong> to <strong>Cowork</strong>, make a Claude project for the course with an empty folder of its own, and paste this into it:</p>
+      <p class="say">Open the Claude desktop app, turn <strong>Run new tasks on cloud</strong> off in <strong>Settings &rarr; Cowork</strong>, switch the toggle from <strong>Chat</strong> to <strong>Cowork</strong>, set the model to <strong>Opus 5</strong>, make a Claude project for the course with an empty folder of its own, and paste this into it:</p>
       <div class="promptrow">
         <div class="prompt" id="prompt">Start CPT-SA from trauma-skills.github.io/CPT-SA/start</div>
         <button class="copy" id="copy" type="button">Copy</button>
@@ -465,6 +465,9 @@ footer .crisis-line a{color:inherit}
       <div class="flow">
         <h3>What setup looks like</h3>
         <p style="font-size:.92rem;color:var(--ink-soft);line-height:1.6;margin:-.35rem 0 0">The whole thing, one screen at a time. The red bubbles mark the controls to use. Everything below writes the same steps out in words.</p>
+        <div class="note">
+          <p><strong>One setting to check before any of it: keep tasks on this computer.</strong> Cowork can run its work on Anthropic's cloud instead of on your machine, and newer versions of the app make that the default for new tasks. This course is built and tested for tasks that run locally — run on cloud, Claude can only reach your course folder while the app stays open and connected, and loses it the moment the connection drops. Before you start, open <strong>Settings &rarr; Cowork</strong> in the desktop app and turn <strong>off</strong> <em>Run new tasks on cloud</em>. The <em>Local</em> option you'll meet later, when creating the project, is about who can see the project — it does not control where tasks run. This setting does.</p>
+        </div>
         <div class="walk" id="walk" aria-roledescription="carousel" aria-label="Setup walkthrough">
           <div class="walk-bar">
             <p class="walk-count" aria-live="polite">Screen 1 of 8</p>
@@ -474,49 +477,49 @@ footer .crisis-line a{color:inherit}
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/02-project-or-folder.png" width="1564" height="830" alt="The Claude Cowork composer, with the Chat/Cowork toggle set to Cowork, the model set to Opus 5 at High effort, and the Project or folder selector highlighted."><img class="mark" src="img/focus/02-project-or-folder.png" width="1564" height="830" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Steps one and two</span><b>Turn on Cowork, choose Opus 5 or Fable 5 (if available), then open Project or folder.</b> If an effort level is shown next to the model name, set it to <b>High</b> — the sessions depend on unhurried, careful reasoning. Cowork is what lets Claude work with a folder on your computer rather than just chatting.</figcaption>
+                <figcaption><span class="step-n">Steps two and three</span><b>Turn on Cowork, choose Opus 5, then open Project or folder.</b> Set the course up with Opus 5 even if you have Fable 5 — you can switch once it's installed. If an effort level is shown next to the model name, set it to <b>High</b> — the sessions depend on unhurried, careful reasoning. Cowork is what lets Claude work with a folder on your computer rather than just chatting.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/03-create-new-project.png" width="1484" height="756" alt="The Project or folder menu open in Claude, with Create new project highlighted."><img class="mark" src="img/focus/03-create-new-project.png" width="1484" height="756" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step two</span><b>Choose Create new project.</b> The next screen lets you name the project and connect the folder that will hold the course.</figcaption>
+                <figcaption><span class="step-n">Step three</span><b>Choose Create new project.</b> The next screen lets you name the project and connect the folder that will hold the course.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/04-create-project.png" width="1580" height="1200" alt="The Create a project dialog with My CPT Course entered, and the Use a folder button highlighted."><img class="mark" src="img/focus/04-create-project.png" width="1580" height="1200" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step two</span><b>Name the project My CPT Course</b>, or another name. Leave the optional goal blank, then choose <strong>Use a folder</strong>.</figcaption>
+                <figcaption><span class="step-n">Step three</span><b>Name the project My CPT Course</b>, or another name. Leave the optional goal blank, then choose <strong>Use a folder</strong>.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/05-folder.png" width="1600" height="806" alt="Choosing a new, empty folder named My CPT Course, with the folder name and the New Folder button highlighted."><img class="mark" src="img/focus/05-folder.png" width="1600" height="806" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step two</span><b>Give it an empty folder of its own.</b> Make a new folder and point Cowork at it. Everything the course keeps — your writing, where you are, what comes next — lives here, and nowhere else.</figcaption>
+                <figcaption><span class="step-n">Step three</span><b>Give it an empty folder of its own.</b> Make a new folder and point Cowork at it. Everything the course keeps — your writing, where you are, what comes next — lives here, and nowhere else.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/06-folder-permissions.png" width="1550" height="950" alt="Claude asking for permission to change files in My CPT Course, with Always allow highlighted."><img class="mark" src="img/focus/06-folder-permissions.png" width="1550" height="950" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step three</span><b>Choose Always allow.</b> This gives Claude continuing access to the course folder so it can save your work and progress between conversations.</figcaption>
+                <figcaption><span class="step-n">Step four</span><b>Choose Always allow.</b> This gives Claude continuing access to the course folder so it can save your work and progress between conversations.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/07-project-details.png" width="1164" height="1310" alt="The final Create a project dialog, with the local folder path and the Create project button highlighted."><img class="mark" src="img/focus/07-project-details.png" width="1164" height="1310" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step three</span><b>Confirm the details and create the project.</b> Leave Instructions blank, keep visibility set to Local, and check the local folder is the one you just made.</figcaption>
+                <figcaption><span class="step-n">Step four</span><b>Confirm the details and create the project.</b> Leave Instructions blank, keep visibility set to Local, and check the local folder is the one you just made.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/08-automatic-approve.png" width="1542" height="771" alt="The My CPT Course project screen with the Cowork approvals menu open and Automatically approve highlighted."><img class="mark" src="img/focus/08-automatic-approve.png" width="1542" height="771" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step four</span><b>Inside My CPT Course, use Automatically approve.</b> The course reads and updates its files as you work, so this keeps each session from stopping for confirmation on every action.</figcaption>
+                <figcaption><span class="step-n">Step five</span><b>Inside My CPT Course, use Automatically approve.</b> The course reads and updates its files as you work, so this keeps each session from stopping for confirmation on every action.</figcaption>
               </figure>
             </li>
             <li>
               <figure>
                 <div class="frame"><span class="stack"><img class="plain" src="img/09-paste.png" width="1456" height="882" alt="The CPT-SA install message pasted into the My CPT Course message box, with the message and the send button highlighted."><img class="mark" src="img/focus/09-paste.png" width="1456" height="882" alt="" aria-hidden="true"></span></div>
-                <figcaption><span class="step-n">Step five</span><b>Paste the message and send it.</b> <span class="snip"><code>Start CPT-SA from trauma-skills.github.io/CPT-SA/start</code><button class="snip-copy" type="button" aria-label="Copy the install message"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 5.2V3.9a1.6 1.6 0 0 0-1.6-1.6H4.1A1.6 1.6 0 0 0 2.5 3.9v5.1a1.6 1.6 0 0 0 1.6 1.6h1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></span> That's the whole install. Claude sets everything up and welcomes you in, starting with a short conversation about what brings you here — you don't need to do anything else.</figcaption>
+                <figcaption><span class="step-n">Step six</span><b>Paste the message and send it.</b> <span class="snip"><code>Start CPT-SA from trauma-skills.github.io/CPT-SA/start</code><button class="snip-copy" type="button" aria-label="Copy the install message"><svg viewBox="0 0 16 16" width="13" height="13" aria-hidden="true" focusable="false"><rect x="5.2" y="5.2" width="8.3" height="8.3" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10.8 5.2V3.9a1.6 1.6 0 0 0-1.6-1.6H4.1A1.6 1.6 0 0 0 2.5 3.9v5.1a1.6 1.6 0 0 0 1.6 1.6h1.1" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></span> That's the whole install. Claude sets everything up and welcomes you in, starting with a short conversation about what brings you here — you don't need to do anything else.</figcaption>
               </figure>
             </li>
           </ol>
@@ -537,7 +540,7 @@ footer .crisis-line a{color:inherit}
             <tbody>
               <tr><td>App</td><td>The <strong>Claude desktop app</strong> for macOS or Windows — <a href="https://claude.ai/download">download it here</a>. Cowork runs in the desktop app; the web version will not do, and neither will the iPhone or Android apps.</td></tr>
               <tr><td>Plan</td><td>A <strong>paid Claude plan</strong> — Pro, currently $20/month — at minimum.</td></tr>
-              <tr><td>Model</td><td><strong>Claude Opus 5</strong> or <strong>Claude Fable 5</strong> — the two it has been tested with. Fable needs a <strong>Claude Max</strong> plan, while Opus is available on the Pro plan.</td></tr>
+              <tr><td>Model</td><td><strong>Claude Opus 5</strong> to set the course up. For the sessions themselves, Opus 5 or <strong>Claude Fable 5</strong> — the two it has been tested with. Fable needs a <strong>Claude Max</strong> plan, while Opus is available on the Pro plan.</td></tr>
               <tr><td>Anything else</td><td><strong>Nothing.</strong> There is nothing else to install, download, or set up. If you can open the Claude app, you can run this.</td></tr>
             </tbody>
           </table>
@@ -546,13 +549,15 @@ footer .crisis-line a{color:inherit}
         <div class="note">
           <p><strong>Why those two models.</strong> It has to be Claude, because the whole thing is built on Cowork, which is what gives it a folder to keep your work in, notes it can read back at the start of the next conversation, and handouts that open beside the chat. Within that, <strong>Opus 5 and Fable 5 are simply the two it has been built and tested against.</strong></p>
           <p>That matters more than a preference usually would, because the session guides ask a lot of a facilitator across many turns — staying Socratic, not challenging beliefs before the protocol says to, tracking safety signals, writing continuity notes without being reminded. Another model might hold all of that perfectly well. Nobody has checked.</p>
+          <p><strong>One practical note: set the course up with Opus 5, even if you plan to run it on Fable 5.</strong> Fable ships with tighter guardrails and will sometimes decline the setup step outright — not because anything is wrong with you or your folder, but because it is more cautious about what it agrees to set up. Opus installs the course reliably, and once the files are in place either model runs it. If Claude does decline during setup, switch the model to Opus 5, paste the same message again, and switch back afterwards if Fable is the model you prefer.</p>
         </div>
       </div>
 
       <div class="flow">
-        <h3>Six steps</h3>
+        <h3>Seven steps</h3>
         <ol class="steps">
-          <li><strong>Open the Claude desktop app and start Cowork.</strong> Set the model to Opus 5 or Fable 5.</li>
+          <li><strong>Turn off cloud tasks.</strong> Open the Claude desktop app, go to <strong>Settings &rarr; Cowork</strong>, and switch <strong>Run new tasks on cloud</strong> off. The course runs on your own computer, out of its own folder, and this setting is what keeps it there. (The project's <em>Local</em> option in step four is about sharing, not about where tasks run.)</li>
+          <li><strong>Start Cowork.</strong> Set the model to Opus 5 — even if you plan to use Fable 5, which you can switch to once the course is installed.</li>
           <li><strong>Create a project for the course and give it its own empty folder.</strong> Open <strong>Project or folder</strong>, choose <strong>Create new project</strong>, name it <strong>My CPT Course</strong> or another name, leave the optional goal blank, and choose a new folder in Documents. Sixteen sessions of writing, notes and state accumulate, so keeping them together makes the course easy to find.</li>
           <li><strong>Finish creating the project.</strong> Choose <strong>Always allow</strong> when Claude asks for folder access, leave Instructions blank, confirm the project is <strong>Local</strong>, then click <strong>Create project</strong>.</li>
           <li><strong>Set approvals to Automatically approve.</strong> The course needs to read and update its files as you work; this avoids stopping for confirmation on every file action.</li>
@@ -666,7 +671,7 @@ footer .crisis-line a{color:inherit}
         <ul class="plain">
           <li><strong>No analytics, no tracking, no crash reporting.</strong> Nothing about you or your use of this is recorded anywhere but your own folder, and nothing is ever sent anywhere.</li>
           <li><strong>It goes online for exactly one thing.</strong> At most once a fortnight, when you open a conversation and before anything else happens, it looks at this website to see whether a newer version of the course has come out — then tells you, and waits. <strong>It doesn't send anything about you</strong>: not your writing, not your progress, not who you are. It's the same as your own browser opening a page here, so whoever hosts this site sees what any website sees — that a computer somewhere asked for a file. Nothing is downloaded or changed unless you say yes, and you can switch the check off for good by saying <em>stop asking about updates</em>. With it off, the course never goes online at all.</li>
-          <li><strong>No accounts, no servers, no sync, no cloud storage.</strong> Your course folder is a folder on your own disk, and nothing in this project ever uploads it.</li>
+          <li><strong>No accounts, no servers, no sync, no cloud storage.</strong> Your course folder is a folder on your own disk, and nothing in this project ever uploads it. This is also why setup has you turn off Cowork's <em>Run new tasks on cloud</em> setting: with tasks running on your own computer, the course reads its files straight off your disk, and they go nowhere else.</li>
           <li><strong>The welcome card and the check-in form don't reach out to anyone.</strong> Everything they need is inside them — no fonts, pictures or code pulled in from other companies. <em>This web page is the same: it doesn't track you, and it stores nothing on your computer.</em></li>
           <li><strong>All of it is just writing, and you can read it.</strong> Every part of this course is a document — the sessions, the handouts, the instructions Claude follows. Nothing is a program, nothing is scrambled or hidden, and nothing needs special software to open. If you want to know what a session will ask of you before you start it, you can go and read it.</li>
           <li><strong>Your writing is never modified or deleted by the course.</strong> Even a reset archives rather than deletes. <strong>You</strong> can delete it permanently whenever you like — the archive is a normal folder on your own computer, and nothing here keeps a second copy anywhere, so deleting it is genuinely the end of it.</li>
